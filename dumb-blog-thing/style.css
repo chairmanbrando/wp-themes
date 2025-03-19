@@ -1,0 +1,334 @@
+/**
+ * Theme Name:  The Child
+ * Description: It's a child of Twenty Twenty-One: the last default theme not to be full of Gutenberg nonsense.
+ * Author:      chairmanbrando
+ * Author URI:  https://chairmanbrando.github.io/
+ * Version:     0.1.0
+ * Template:    twentytwentyone
+ * Update URI:  false
+ */
+
+:root {
+    --bgMain: #1f1b25;
+}
+
+/* Might delete later. 🤷‍♀️ */
+body {
+    background-attachment: fixed;
+    background-image: url('img/p1.webp');
+}
+
+/* Just trying to make sure these don't affect line heights. */
+p :is(sup, sub) {
+    display: inline !important;
+    font-size: 75% !important;
+    line-height: 1 !important;
+    padding: 0 !important;
+    position: relative !important;
+
+    a {
+        line-height: 0 !important;
+    }
+}
+
+    p sup {
+        top: 0 !important;
+        vertical-align: top !important;
+        vertical-align: super !important;
+    }
+
+    p sub {
+        bottom: 0 !important;
+        vertical-align: bottom !important;
+        vertical-align: sub !important;
+    }
+
+form {
+    fieldset {
+        border: 0;
+        margin: 1rem 0;
+        padding: 0;
+
+        &:has(input[type="radio"]) {
+            display: block;
+
+            label {
+                display: inline;
+                margin: 0 1em 0 0;
+            }
+        }
+    }
+}
+
+.alignmid {
+    max-width: 100ex !important;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.too-tall-bro {
+    max-height: 360px;
+}
+
+.wait {
+    cursor: wait;
+}
+
+#wpadminbar {
+    border-bottom: 1px solid magenta;
+}
+
+/* I had these marked important, but was it required? What made me do it? */
+#page * {
+    font-family: Consolas, Inconsolata, 'Fira Code', Monaco, monospace;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1.42;
+}
+
+#page {
+    a {
+        color: magenta;
+
+        &:focus {
+            background: transparent;
+        }
+    }
+
+    strong {
+        font-weight: bold;
+    }
+
+    blockquote {
+        border-left: 1px solid magenta;
+        padding-bottom: 0.25em;
+
+        &::before {
+            display: none;
+        }
+
+        p {
+            opacity: 0.69;
+        }
+    }
+}
+
+#primary {
+    figcaption {
+        font-size: 0.8125rem;
+        margin-bottom: 0;
+        opacity: 0.69;
+
+        > * {
+            font-size: 0.8125rem;
+        }
+    }
+
+    hr {
+        border-color: magenta;
+        position: relative;
+
+        &::before, &::after {
+            color: magenta;
+            position: absolute;
+            top: -0.7em;
+        }
+
+            &::before {
+                content: '❦ ';
+                left: -1em;
+            }
+
+            &::after {
+                content: ' ❦';
+                right: -1em;
+            }
+    }
+
+    img {
+        box-shadow: 0 0 0 1px rgba(255,255,255, 0.2);
+    }
+
+    :is(p, ul, ol):not(.text-align-left) {
+        text-align: justify;
+    }
+
+    :is(p, ul, ol, td) {
+        code, kbd {
+            background-color: color-mix(in srgb, currentColor 20%, transparent);
+            color: var(--wp--preset--color--pale-cyan-blue);
+            padding-left: 0.25em;
+            padding-right: 0.25em;
+            position: relative;
+            /* white-space: nowrap; */
+        }
+    }
+
+    .code-toolbar {
+        &:has(.alignmid) {
+            max-width: 100ex;
+        }
+    }
+}
+
+#announcement {
+    background-color: #111;
+    border-bottom: 3px solid magenta;
+    padding: 0.5rem 1rem;
+    text-align: center;
+}
+
+.site-branding {
+    margin-top: 0;
+}
+
+.entry-header.alignwide {
+    max-width: var(--responsive--aligndefault-width);
+}
+
+.entry-title {
+    #page & {
+        background-color: magenta;
+        color: var(--bgMain);
+        font-size: 2rem;
+        line-height: 1.21;
+        padding: 0.125em 0.5em;
+
+        a {
+            color: var(--bgMain);
+            font-size: 2rem;
+            line-height: 1.21;
+            text-decoration: none;
+        }
+    }
+}
+
+.entry-content {
+    #page & {
+        h2.wp-block-heading {
+            border-bottom: 1px solid magenta;
+            text-transform: uppercase;
+        }
+
+        h3.wp-block-heading {
+            font-size: 1.3125rem;
+        }
+    }
+}
+
+.singular {
+    .entry-header {
+        border-bottom-width: 0;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .entry-title {}
+
+    .entry-footer {
+        border-top-width: 1px !important;
+
+        /*
+        .posted-by {
+            display: inline !important;
+        }
+
+        .posted-on {
+            display: inline !important;
+            margin-right: 1ex;
+        }
+        */
+
+        .byline {
+            display: none !important;
+        }
+
+        /*
+        .post-taxonomies {
+            text-align: left !important;
+
+            .cat-links,
+            .tags-links {
+                display: inline !important;
+            }
+        }
+        */
+    }
+}
+
+/* Not sure what the base theme was trying to accomplish with this nonsense. */
+.entry-content > [class="wp-block-image"] + * {
+    margin-top: calc(0.666 * var(--global--spacing-vertical));
+
+    @media (min-width: 482px) {
+        margin-top: var(--global--spacing-vertical);
+    }
+}
+
+.pagination {
+    border-top: 0;
+}
+
+#colophon {
+    margin-top: var(--global--spacing-vertical);
+}
+
+.site-info {
+    border-top-width: 1px !important;
+    position: relative;
+
+    &::before {
+        content: '#eidnind';
+        position: absolute;
+        right: 50%;
+        translate: 50% 0;
+    }
+
+    &::after {
+        content: 'Copyright Forever by Default';
+        position: absolute;
+        right: 0;
+    }
+
+    .powered-by {
+        display: none;
+    }
+}
+
+.tooltip {
+    background-color: #111;
+    border: 1px solid magenta;
+    display: none;
+    /* max-width: 600px; */
+    min-height: 100px;
+    padding: 1rem;
+    position: absolute;
+    width: var(--responsive--aligndefault-width);
+
+    &.show {
+        display: block;
+    }
+
+    .title {
+        border-bottom: 1px solid;
+        margin-bottom: 1rem;
+    }
+
+    p:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+
+    img,
+    video {
+        display: block;
+        width: 100%;
+    }
+}
+
+#comments {
+    .required-field-message {
+        display: none;
+    }
+}
