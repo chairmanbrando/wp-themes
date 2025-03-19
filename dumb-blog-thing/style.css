@@ -89,6 +89,12 @@ form {
 }
 
 #page {
+    .page-header {
+        border: 0;
+        padding: 0;
+        text-align: center;
+    }
+
     a {
         color: magenta;
 
@@ -182,6 +188,15 @@ form {
 
 .site-branding {
     margin-top: 0;
+}
+
+#site-navigation {
+    .menu-item {
+        a:not([href]) {
+            color: var(--global--color-primary);
+            pointer-events: none;
+        }
+    }
 }
 
 .entry-header.alignwide {
