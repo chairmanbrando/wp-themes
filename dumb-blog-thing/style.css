@@ -288,27 +288,40 @@ form {
 
 #colophon {
     margin-top: var(--global--spacing-vertical);
-}
 
-.site-info {
-    border-top-width: 1px !important;
-    position: relative;
+    &:has(.footer-navigation) {
+        .footer-navigation {
+            border-top: 1px solid;
+            margin-bottom: 0;
+            padding-top: var(--global--spacing-vertical);
+        }
 
-    &::before {
-        content: '#eidnind';
-        position: absolute;
-        right: 50%;
-        translate: 50% 0;
+        .site-info {
+            border-top: 0;
+            margin-top: 0;
+        }
     }
 
-    &::after {
-        content: 'Copyright Forever by Default';
-        position: absolute;
-        right: 0;
-    }
+    .site-info {
+        border-top-width: 1px;
+        position: relative;
 
-    .powered-by {
-        display: none;
+        &::before {
+            content: '#eidnind';
+            position: absolute;
+            right: 50%;
+            translate: 50% 0;
+        }
+
+        &::after {
+            content: 'Copyright Forever by Default';
+            position: absolute;
+            right: 0;
+        }
+
+        .powered-by {
+            display: none;
+        }
     }
 }
 
