@@ -306,11 +306,20 @@ form {
         border-top-width: 1px;
         position: relative;
 
+        &:hover {
+            &::before {
+                transform: rotateY(180deg);
+            }
+        }
+
         &::before {
             content: '#eidnind';
             position: absolute;
             right: 50%;
             translate: 50% 0;
+            transition: transform 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+
+
         }
 
         &::after {
