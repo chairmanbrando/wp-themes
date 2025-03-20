@@ -221,6 +221,15 @@ class Tooltipper {
 
 }
 
+function fixMobileMenuButton() {
+    const $intheway = document.querySelector('#announcement');
+    const $button   = document.querySelector('#primary-mobile-menu');
+
+    if (! $intheway) return;
+
+    $button.style.marginTop = `${$intheway.offsetHeight}px`;
+}
+
 function newTabifyLinks() {
     document.body.querySelectorAll('a').forEach((link) => {
         if (link.hostname === window.location.hostname) {
@@ -233,6 +242,7 @@ function newTabifyLinks() {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    fixMobileMenuButton();
     newTabifyLinks();
 
     // We'll wait a second for other JS things to run first.
