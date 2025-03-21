@@ -103,6 +103,10 @@ add_filter('wp_resource_hints', function ($hints, $relation_type) {
 
 // ----- @functions --------------------------------------------------------- //
 
+function __dropdown_pages_args($args) {
+    return array_merge($args, ['post_status' => ['publish', 'draft', 'private']]);
+}
+
 function add_filters($names, $callback, $priority = 10, $args = 1) {
     $names = (! is_array($names)) ? [$names] : $names;
 
@@ -113,9 +117,12 @@ function add_filters($names, $callback, $priority = 10, $args = 1) {
 
 // ----- @hooks ------------------------------------------------------------- //
 
-function __dropdown_pages_args($args) {
-    return array_merge($args, ['post_status' => ['publish', 'draft', 'private']]);
-}
+add_filter('comment_form_field_comment', function ($field) {
+    $placeholder = __('Add a comment here if you must.');
+    $placeholder = sprintf('placeholder="%s"', $placeholder);
+
+    return str_replace('<textarea', "<textarea {$placeholder}", $field);
+});
 
 // Add announcement bar if it has content.
 add_action('get_template_part', function ($slug) {

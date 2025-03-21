@@ -44,6 +44,11 @@ p :is(sup, sub) {
     }
 
 form {
+    button,
+    input[type="submit"] {
+        border-color: magenta;
+    }
+
     fieldset {
         border: 0;
         margin: 1rem 0;
@@ -363,7 +368,9 @@ form {
 }
 
 #comments {
-    .required-field-message {
+    #reply-title,
+    .required-field-message,
+    label[for="comment"] {
         display: none;
     }
 }
