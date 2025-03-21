@@ -80,13 +80,18 @@ class Tooltipper {
 
     createTooltip(type, link, i) {
         const tooltip = document.createElement('div');
-        let   content;
+        let top       = link.offsetTop + link.offsetHeight;
+        let left      = link.parentElement.offsetLeft;
+        let content;
+
+        if (document.body.classList.contains('admin-bar')) {
+            top += document.querySelector('#wpadminbar').offsetHeight;
+        }
 
         tooltip.type       = type;
         tooltip.id         = `tooltip-${i}`;
-        tooltip.style.top  = `calc(${link.offsetTop}px + 4rem)`;
-        // tooltip.style.left = `calc(${link.offsetLeft}px + 1rem)`;
-        tooltip.style.left = `calc(${link.parentElement.offsetLeft}px + 1rem)`;
+        tooltip.style.top  = `calc(${top}px + 1rem)`;
+        tooltip.style.left = `calc(${left}px + 1rem)`;
 
         tooltip.classList.add('tooltip');
 

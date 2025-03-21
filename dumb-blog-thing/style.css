@@ -82,7 +82,7 @@ form {
 
 /* I had these marked important, but was it required? What made me do it? */
 #page * {
-    font-family: Consolas, Inconsolata, 'Fira Code', Monaco, monospace;
+    font-family: Consolas, 'Fira Code', Monaco, Monego, monospace;
     font-size: 1rem;
     font-weight: normal;
     line-height: 1.42;
@@ -239,8 +239,6 @@ form {
         margin-bottom: 0;
         padding-bottom: 0;
     }
-
-    .entry-title {}
 
     .entry-footer {
         border-top-width: 1px !important;
