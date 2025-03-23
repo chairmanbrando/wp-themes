@@ -1,3 +1,1 @@
-- Certain tooltips (e.g. post #74) may have *stuff* that needs to be processed out of the returned extract's markup lest the content of the tooltip end up blank.
-
 - Figure out how to get a Wikipedia extract from a specific section should the linked URL contain a hash to one. See: https://stackoverflow.com/a/59511898

@@ -187,6 +187,10 @@ class Tooltipper {
         if (page?.title   === undefined) return false;
         if (page?.extract === undefined) return false;
 
+        // Clean up some weirdness that comes back with some articles.
+        page.extract = page.extract.replaceAll('<p class="mw-empty-elt">\n</p>', '');
+        page.extract = page.extract.replaceAll('\n', '');
+
         const title   = tooltip.querySelector('.title');
         const extract = tooltip.querySelector('.extract');
 
