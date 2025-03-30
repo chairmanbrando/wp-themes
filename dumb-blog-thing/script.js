@@ -80,8 +80,8 @@ class Tooltipper {
 
     createTooltip(type, link, i) {
         const tooltip = document.createElement('div');
+        let left      = document.querySelector('.entry-content p').offsetLeft;
         let top       = link.offsetTop + link.offsetHeight;
-        let left      = link.parentElement.offsetLeft;
         let content;
 
         if (document.body.classList.contains('admin-bar')) {
