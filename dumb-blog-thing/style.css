@@ -231,12 +231,12 @@ form {
 
 .entry-content {
     #page & {
-        h2.wp-block-heading {
+        h2 {
             border-bottom: 1px solid magenta;
             text-transform: uppercase;
         }
 
-        h3.wp-block-heading {
+        h3 {
             font-size: 1.3125rem;
         }
     }
