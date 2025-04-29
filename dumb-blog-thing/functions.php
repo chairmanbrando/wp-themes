@@ -167,8 +167,12 @@ add_action('template_redirect', function () {
     }
 }, 99);
 
+// Do various content things here...
 add_filter('the_content', function ($content) {
     if (is_admin()) return $content;
+
+    // Since texturization is disabled above, we get no ellipses.
+    $content = str_replace('...', '&hellip;', $content);
 
     // WPE fucks inline code that links somewhere, so let's undo that.
     $content = preg_replace('/<code>&lt;a(.+?)&gt;/', '<a$1><code>', $content);
@@ -176,7 +180,7 @@ add_filter('the_content', function ($content) {
     $content = str_replace('=&quot;', '="', $content);
     $content = str_replace('&quot;>', '">', $content);
 
-    // Maybe double em dashes are cool? Don't know if they'll even work.
+    // Maybe double em dashes are cool? Don't know if browsers or fonts use it.
     return str_replace(' -- ', ' ⸺ ', $content);
 });
 
