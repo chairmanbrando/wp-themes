@@ -129,6 +129,10 @@ add_action('get_template_part', function ($slug) {
     if ($slug !== 'template-parts/header/site-header') return;
 
     if ($text = get_field('announcement', 'option')) {
+        if ($url = get_field('announcement_url', 'option')) {
+            $text .= sprintf(' <a href="%s">&xrarr;</a>', $url);
+        }
+
         printf('<div id="announcement">%s</div>', __($text));
     }
 });
