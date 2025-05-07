@@ -1,5 +1,5 @@
+- If a post has an "updated" tag, display the modified date below the published date.
+
 - Figure out how to get a Wikipedia extract from a specific section should the linked URL contain a hash to one. See: https://stackoverflow.com/a/59511898
 
     So, it turns out you can't get an extract from a section. You have to do one query to find the number of sections and their metadata, match one of them up to the hash in the link, and then do a second query to get that section. Doing so will give you *all* of the contents of that section, rather than a maximum of 1200 characters as currently set for extracts, and then you have to trim it down and process it. Doesn't seem worth it, to be honest.
-
-- Add a style for a "note" paragraph that stands out.
