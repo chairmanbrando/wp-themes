@@ -164,6 +164,9 @@ p.note {
 
     hr {
         border-color: magenta;
+        margin-bottom: calc(var(--global--spacing-vertical) * 1.5);
+        margin-top: calc(var(--global--spacing-vertical) * 1.5);
+        min-width: 150px;
         position: relative;
 
         &::before, &::after {
