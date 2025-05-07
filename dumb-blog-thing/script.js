@@ -31,8 +31,9 @@ class Tooltipper {
         this.#endpoint.searchParams.append('action', 'query');
         this.#endpoint.searchParams.append('prop', 'extracts');
         this.#endpoint.searchParams.append('format', 'json');
-        this.#endpoint.searchParams.append('exintro', '');
-        this.#endpoint.searchParams.append('exsectionformat', 'plain');
+        this.#endpoint.searchParams.append('exintro', true);
+        this.#endpoint.searchParams.append('explaintext', true);
+        this.#endpoint.searchParams.append('exchars', 1200);
 
         this.createTooltips();
         this.addListeners();
@@ -150,7 +151,7 @@ class Tooltipper {
         title = decodeURIComponent(title); // In case of justness.
         this.#endpoint.searchParams.append('titles', title);
 
-        // I'm sorry, but the Fetch API is horrendous compared to this.
+        // I'm sorry, but the native Fetch API is horrendous compared to this.
         return $.ajax({
             url:      this.endpoint,
             method:   'GET',
@@ -167,7 +168,7 @@ class Tooltipper {
 
     getWikipediaLinks() {
         return Array.from(document.querySelectorAll('#content a')).filter((link) => {
-            return (link.hostname.indexOf('wikipedia.org') > -1);
+            return (link.hostname.indexOf('wikipedia.org') > -1 && link.href.indexOf('#') === -1);
         });
     }
 
@@ -187,22 +188,12 @@ class Tooltipper {
         if (page?.title   === undefined) return false;
         if (page?.extract === undefined) return false;
 
-        // Clean up some weirdness that comes back with some articles.
-        page.extract = page.extract.replaceAll('<p class="mw-empty-elt">\n</p>', '');
-        page.extract = page.extract.replaceAll('\n', '');
-
         const title   = tooltip.querySelector('.title');
         const extract = tooltip.querySelector('.extract');
 
+        page.extract      = page.extract.replaceAll('\n', '<br><br>');
         title.textContent = title.textContent.replace('%title%', page.title);
-
-        // Two paragraphs "should" be fine given normal formatting of the page.
-        if (page.extract.length > 1023) {
-            const paragraphs = page.extract.split('</p>', 2).join('</p>');
-            extract.innerHTML = extract.textContent.replace('%extract%', paragraphs);
-        } else {
-            extract.innerHTML = extract.innerHTML.replace('%extract%', page.extract);
-        }
+        extract.innerHTML = extract.innerHTML.replace('%extract%', `<p>${page.extract}</p>`);
 
         return true;
     }
