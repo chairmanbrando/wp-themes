@@ -115,6 +115,31 @@ function add_filters($names, $callback, $priority = 10, $args = 1) {
     }
 }
 
+// Copy-pasting to preemptively override this function so I can change it. Such
+// is how it goes when there's no hooks to use!
+function twenty_twenty_one_posted_on() {
+     $times = sprintf(
+        '<time class="entry-date published" datetime="%1$s">%2$s</time>',
+        esc_attr(get_the_date(DATE_W3C)),
+        esc_html(get_the_date())
+    );
+
+    $modis = sprintf(
+        '<time class="entry-date updated" datetime="%1$s">%2$s</time>',
+        esc_attr(get_the_modified_date(DATE_W3C)),
+        esc_html(get_the_modified_date())
+    );
+
+    echo '<span class="posted-on">';
+    printf(esc_html__('Published %s', 'twentytwentyone'), $times);
+
+    if (has_tag('updated')) {
+        echo '<br>' . sprintf(esc_html__('Updated %s', 'twentytwentyone'), $modis);
+    }
+
+    echo '</span>';
+}
+
 // ----- @hooks ------------------------------------------------------------- //
 
 add_filter('comment_form_field_comment', function ($field) {
