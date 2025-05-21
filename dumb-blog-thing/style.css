@@ -192,6 +192,7 @@ p.note {
 
     :is(p, ul, ol) {
         hyphens: auto;
+        text-wrap: pretty;
 
         &:not(.text-align-left) {
             text-align: justify;
@@ -264,7 +265,9 @@ p.note {
 .entry-content {
     #page & {
         h2 {
-            border-bottom: 1px solid magenta;
+            background-color: magenta;
+            color: var(--bgMain);
+            padding: 0.125em 0.5em;
             text-transform: uppercase;
         }
 

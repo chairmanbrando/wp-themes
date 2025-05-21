@@ -59,8 +59,6 @@ add_action('admin_enqueue_scripts', function () {
 add_action('admin_init', function () {});
 
 add_action('after_setup_theme', function () {
-    // add_editor_style('style-editor.css');
-
     if (is_admin()) {
         add_action('enqueue_block_assets', function () {
             wp_enqueue_style('editor', CHILD_URL . '/style-editor.css', [], filemtime(CHILD_DIR . '/style.css'));
