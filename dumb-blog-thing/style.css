@@ -83,12 +83,21 @@ p.note {
     position: relative;
 
     &::before {
-        @media (min-width: 482px) {
-            content: '\1F4DD';
+        @media (min-width: 768px) {
+            content: '\1f4dd';
+            font-size: 2em;
         }
 
         left: -2em;
         position: absolute;
+    }
+
+    &.tldr {
+        &::before {
+            @media (min-width: 768px) {
+                content: '\1f9a5';
+            }
+        }
     }
 }
 
