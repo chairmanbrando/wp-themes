@@ -29,6 +29,13 @@
         }
     }
 
+    p.note {
+        background: rgba(102, 102, 140, 0.2);
+        padding: 1em;
+        padding-top: 0.9em;
+        position: relative;
+    }
+
     .wp-block {
         font-family: Consolas, Inconsolata, Monaco, monospace !important;
         font-size: 1rem !important;
