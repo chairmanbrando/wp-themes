@@ -56,7 +56,7 @@ add_action('admin_enqueue_scripts', function () {
     <?php
 }, 99);
 
-add_action('admin_init', function () {});
+// add_action('admin_init', function () {});
 
 add_action('after_setup_theme', function () {
     if (is_admin()) {
@@ -113,8 +113,9 @@ function add_filters($names, $callback, $priority = 10, $args = 1) {
     }
 }
 
-// Copy-pasting to preemptively override this function so I can change it. Such
-// is how it goes when there's no hooks to use!
+// Copy-pasted from the parent to preemptively override this function so I can
+// update it to include the post's modified date. Such is how it goes when
+// there's no hooks to use!
 function twenty_twenty_one_posted_on() {
      $times = sprintf(
         '<time class="entry-date published" datetime="%1$s">%2$s</time>',
@@ -175,8 +176,8 @@ add_filter('rest_page_query',                     '__dropdown_pages_args');
 
 // Move drafts to the top of your post list. Private stuff will come next.
 add_filter('posts_orderby', function ($orderby) {
-    if (! is_admin())                         return $orderby;
-    if (! $GLOBALS['pagenow'] === 'edit.php') return $orderby;
+    if (! is_admin())                       return $orderby;
+    if ($GLOBALS['pagenow'] !== 'edit.php') return $orderby;
 
     return 'post_status ASC, ' . $orderby;
 });
