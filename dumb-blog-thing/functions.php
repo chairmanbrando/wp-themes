@@ -212,6 +212,26 @@ add_filter('the_content', function ($content) {
     return str_replace(' -- ', ' ⸺ ', $content);
 });
 
+// Output any per-post CSS before the content.
+add_filter('the_content', function ($content) {
+    if (! is_singular())                  return $content;
+    if (! $css = get_field('custom_css')) return $content;
+
+    return "<style>{$css}</style>\n{$content}";
+});
+
+// Output any per-post JS way down at the bottom.
+add_action('wp_footer', function () {
+    if (! is_singular())                return;
+    if (! $js = get_field('custom_js')) return;
+
+    ?>
+    <script>
+        (function ($) { <?= $js ?> })(jQuery);
+    </script>
+    <?php
+}, 99);
+
 // Test shit here.
 add_action('wp_footer', function () {
     if (! current_user_can('administrator')) return;
