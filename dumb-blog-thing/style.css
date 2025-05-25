@@ -65,14 +65,35 @@ form {
     }
 }
 
+del, s {
+    background-color: #e6999966;
+    color: inherit;
+    text-decoration: none;
+}
+
+ins, mark {
+    background-color: #99e69966;
+    color: inherit;
+    text-decoration: none;
+}
+
 .alignmid {
-    max-width: 100ex !important;
+    @media (min-width: 104ex) {
+        max-width: 100ex !important;
+    }
 }
 
 ol.long,
 ul.long {
     li + li {
         margin-top: 1rem;
+    }
+}
+
+ol.nowrap,
+ul.nowrap {
+    > li {
+        white-space: nowrap;
     }
 }
 
@@ -117,7 +138,6 @@ p.note {
     border-bottom: 1px solid magenta;
 }
 
-/* I had these marked important, but was it required? What made me do it? */
 #page * {
     font-family: Consolas, Inconsolata, 'Fira Code', Monaco, monospace;
     font-size: 1rem;
@@ -161,6 +181,8 @@ p.note {
 }
 
 #primary {
+    overflow-x: hidden;
+
     figcaption {
         font-size: 0.8125rem;
         margin-bottom: 0;
@@ -216,6 +238,12 @@ p.note {
             padding-right: 0.25em;
             position: relative;
             /* white-space: nowrap; */
+        }
+    }
+
+    .wp-block-list {
+        @media (min-width: 482px) {
+            padding-left: 0;
         }
     }
 
