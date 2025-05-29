@@ -61,7 +61,7 @@ add_action('admin_enqueue_scripts', function () {
 add_action('after_setup_theme', function () {
     if (is_admin()) {
         add_action('enqueue_block_assets', function () {
-            wp_enqueue_style('editor', CHILD_URL . '/style-editor.css', [], filemtime(CHILD_DIR . '/style.css'));
+            wp_enqueue_style('editor', CHILD_URL . '/style-editor.css', [], filemtime(CHILD_DIR . '/style-editor.css'));
         });
     }
 });

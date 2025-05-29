@@ -1,3 +1,5 @@
+- Is there a real use or need for JS-copying of heading ID/name anchors? I don't use headings that often, and I don't think any of them are named at the moment. And Güts doesn't auto-add names to them as other builder systems do.
+
 - Add an `admin.css` or whatever. Then make sure code fields are shown with a monospace font.
 
 - Figure out how to get a Wikipedia extract from a specific section should the linked URL contain a hash to one. See: https://stackoverflow.com/a/59511898

@@ -42,7 +42,7 @@
     }
 
     @media (min-width: 104ex) {
-        @media (min-width: 104ex) {
+        .alignmid {
             max-width: 100ex !important;
         }
     }
