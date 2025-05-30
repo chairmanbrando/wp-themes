@@ -1,0 +1,29 @@
+.acf-field {
+    &.language-css,
+    &.language-js {
+        textarea {
+            font-family: 'SF Mono', Consolas, Inconsolata, Monaco, monospace;
+        }
+    }
+}
+
+.wp-list-table {
+    tr.status-draft,
+    tr.status-private {
+        opacity: 0.75;
+    }
+
+    &.fixed {
+        .column-categories,
+        .column-tags {
+            width: 10%;
+        }
+
+        /* @@ This is nice visually, but need to make them show on hover. */
+        .column-tags {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+}

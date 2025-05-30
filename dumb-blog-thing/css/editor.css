@@ -55,10 +55,14 @@
     }
 
     .wp-block {
-        font-family: Consolas, Inconsolata, Monaco, monospace !important;
+        font-family: 'SF Mono', Consolas, Inconsolata, Monaco, monospace !important;
         font-size: 1rem !important;
         font-weight: normal;
         line-height: 1.42 !important;
+
+        a {
+            color: magenta;
+        }
     }
 
     .wp-block-post-title {
