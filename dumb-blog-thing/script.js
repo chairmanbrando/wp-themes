@@ -82,19 +82,14 @@ class Tooltipper {
 
     createTooltip(type, link, i) {
         const tooltip = document.createElement('div');
-        let left      = document.querySelector('.entry-content p').offsetLeft;
-        let top       = link.offsetTop + link.offsetHeight;
-        let content;
-
-        if (document.body.classList.contains('admin-bar')) {
-            top += document.querySelector('#wpadminbar').offsetHeight;
-        }
+        const left    = document.querySelector('.entry-content p').offsetLeft;
+          let top     = link.getBoundingClientRect().top + link.offsetHeight + window.scrollY;
+          let content;
 
         tooltip.type       = type;
         tooltip.id         = `tooltip-${i}`;
         tooltip.style.top  = `calc(${top}px + 1rem)`;
         tooltip.style.left = `calc(${left}px + 1rem)`;
-
         tooltip.classList.add('tooltip');
 
         switch (type) {
@@ -152,7 +147,6 @@ class Tooltipper {
         title = decodeURIComponent(title); // In case of justness.
         this.#endpoint.searchParams.append('titles', title);
 
-        // I'm sorry, but the native Fetch API is horrendous compared to this.
         return $.ajax({
             url:      this.endpoint,
             method:   'GET',
