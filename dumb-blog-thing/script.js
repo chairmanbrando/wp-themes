@@ -34,6 +34,7 @@ class Tooltipper {
         this.#endpoint.searchParams.append('exintro', true);
         this.#endpoint.searchParams.append('explaintext', true);
         this.#endpoint.searchParams.append('exchars', 1200);
+        this.#endpoint.searchParams.append('origin', '*');
 
         this.createTooltips();
         this.addListeners();
@@ -155,7 +156,6 @@ class Tooltipper {
         return $.ajax({
             url:      this.endpoint,
             method:   'GET',
-            dataType: 'jsonp', // Required for CORS reasons.
             success:  (data) => {
                 const pages = data.query.pages;
                 const page  = Object.values(pages)[0];
