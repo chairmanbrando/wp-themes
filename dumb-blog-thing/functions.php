@@ -203,7 +203,7 @@ add_filter('the_content', function ($content) {
     if (! is_singular())                  return $content;
     if (! $css = get_field('custom_css')) return $content;
 
-    return "<style>{$css}</style>\n{$content}";
+    return "{$content}\n<style>{$css}</style>";
 });
 
 // Output any per-post JS way down at the bottom.
