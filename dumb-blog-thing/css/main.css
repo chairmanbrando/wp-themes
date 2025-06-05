@@ -1,5 +1,11 @@
 :root {
     --bgMain: #1f1b25;
+    --global--color-primary: #f7f7fd;
+
+    @media (min-width: 822px) {
+        --responsive--aligndefault-width: min(calc(100vw - 8 * var(--global--spacing-horizontal)), 64ch);
+        --responsive--alignwide-width: min(calc(100vw - 8 * var(--global--spacing-horizontal)), 128ch);
+    }
 }
 
 /* Might delete later. 🤷‍♀️ */
@@ -34,7 +40,6 @@ p sub {
 }
 
 form {
-
     button,
     input[type="submit"] {
         border-color: magenta;
@@ -71,8 +76,8 @@ mark {
 }
 
 .alignmid {
-    @media (min-width: 104ex) {
-        max-width: 100ex !important;
+    @media (min-width: 100ch) {
+        max-width: 96ch !important;
     }
 }
 
@@ -132,7 +137,7 @@ p.note {
 }
 
 #page * {
-    font-family: 'SF Mono', Consolas, Inconsolata, 'Fira Code', Monaco, monospace;
+    font-family: Consolas, 'SF Mono', Inconsolata, 'Fira Code', Monaco, monospace;
     font-size: 1rem;
     font-weight: normal;
     line-height: 1.42;
@@ -176,12 +181,15 @@ p.note {
 #primary {
     overflow-x: hidden;
 
+    p.caption,
     figcaption {
         font-size: 0.8125rem;
         margin-bottom: 0;
+        margin-top: calc(0.5 * var(--global--spacing-unit));
         opacity: 0.69;
+        text-align: center;
 
-        >* {
+        > * {
             font-size: 0.8125rem;
         }
     }
@@ -215,6 +223,13 @@ p.note {
         box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
     }
 
+    ul,
+    ol {
+        ::marker {
+            color: magenta;
+        }
+    }
+
     :is(p, ul, ol) {
         hyphens: auto;
         text-wrap: pretty;
@@ -225,7 +240,6 @@ p.note {
     }
 
     :is(p, ul, ol, td) {
-
         code,
         kbd {
             background-color: color-mix(in srgb, currentColor 20%, transparent);
@@ -238,14 +252,17 @@ p.note {
     }
 
     .wp-block-list {
-        @media (min-width: 482px) {
-            padding-left: 0;
-        }
+        padding-left: var(--global--spacing-horizontal);
+        padding-right: var(--global--spacing-horizontal);
     }
 
     .code-toolbar {
         &:has(.alignmid) {
-            max-width: 100ex;
+            max-width: 96ch;
+        }
+
+        &:has(+ p.caption) {
+            margin-bottom: 0;
         }
     }
 }
@@ -414,11 +431,10 @@ p.note {
     background-color: #111;
     border: 1px solid magenta;
     display: none;
-    /* max-width: 600px; */
+    max-width: var(--responsive--aligndefault-width);
     min-height: 100px;
     padding: 1rem;
     position: absolute;
-    width: var(--responsive--aligndefault-width);
 
     &.show {
         display: block;

@@ -1,5 +1,6 @@
 .editor-styles-wrapper {
     background: var(--global--color-background);
+    color: var(--global--color-primary);
 
     :is(ul, ol) {
         margin: 0;
@@ -55,7 +56,7 @@
     }
 
     .wp-block {
-        font-family: 'SF Mono', Consolas, Inconsolata, Monaco, monospace !important;
+        font-family: Consolas, 'SF Mono', Inconsolata, Monaco, monospace !important;
         font-size: 1rem !important;
         font-weight: normal;
         line-height: 1.42 !important;
@@ -80,8 +81,7 @@
     }
 
     .wp-block-list {
-        @media (min-width: 482px) {
-            padding-left: 0;
-        }
+        padding-left: var(--global--spacing-horizontal);
+        padding-right: var(--global--spacing-horizontal);
     }
 }

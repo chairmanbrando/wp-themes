@@ -2,7 +2,7 @@
     &.language-css,
     &.language-js {
         textarea {
-            font-family: 'SF Mono', Consolas, Inconsolata, Monaco, monospace;
+            font-family: Consolas, 'SF Mono', Inconsolata, Monaco, monospace;
         }
     }
 }
@@ -19,8 +19,8 @@
             width: 10%;
         }
 
-        /* @@ This is nice visually, but need to make them show on hover. */
-        .column-tags {
+        .column-title:not(:hover),
+        .column-tags:not(:hover) {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
