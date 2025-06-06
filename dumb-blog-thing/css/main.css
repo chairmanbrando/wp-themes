@@ -291,8 +291,12 @@ p.note {
     }
 }
 
-.entry-header.alignwide {
+.entry-header {
     max-width: var(--responsive--aligndefault-width);
+
+    &.alignwide {
+        max-width: var(--responsive--aligndefault-width);
+    }
 }
 
 .entry-title {

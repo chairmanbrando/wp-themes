@@ -1,3 +1,5 @@
+- Unfloat or unflex the meta area on single views. Not sure if left or right aligned would look the neatest, but try both.
+
 - Move plugin-like code out into plugins where they belong.
 
 - Is there a real use or need for JS-copying of heading ID/name anchors? I don't use headings that often, and I don't think any of them are named at the moment. And Güts doesn't auto-add names to them as other builder systems do.
