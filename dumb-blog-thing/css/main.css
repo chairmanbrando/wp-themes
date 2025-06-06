@@ -153,6 +153,11 @@ p.note {
     a {
         color: magenta;
 
+        &:hover {
+            color: #ffaa00;
+            text-decoration: none;
+        }
+
         &:focus {
             background: transparent;
         }
@@ -343,32 +348,17 @@ p.note {
 
     .entry-footer {
         border-top-width: 1px !important;
+        display: block !important;
+        text-align: right;
 
-        /*
         .posted-by {
-            display: inline !important;
+            display: flex;
+            flex-direction: column-reverse;
         }
-
-        .posted-on {
-            display: inline !important;
-            margin-right: 1ex;
-        }
-        */
 
         .byline {
             display: none !important;
         }
-
-        /*
-        .post-taxonomies {
-            text-align: left !important;
-
-            .cat-links,
-            .tags-links {
-                display: inline !important;
-            }
-        }
-        */
     }
 }
 
