@@ -451,6 +451,28 @@ p.note {
 }
 
 #comments {
+    &::before {
+        content: 'Hover or tap here if you wish to leave a comment.';
+        display: block;
+    }
+
+    &.show,
+    &:hover {
+        #respond {
+            display: block;
+        }
+    }
+
+    &.show {
+        &:before {
+            color: transparent;
+        }
+    }
+
+    #respond {
+        display: none;
+    }
+
     #reply-title,
     .required-field-message,
     label[for="comment"] {
