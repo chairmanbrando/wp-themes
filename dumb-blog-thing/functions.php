@@ -145,6 +145,23 @@ add_action('get_template_part', function ($slug) {
     }
 });
 
+// I'm too lazy to the use "more" tag even though I should. This filter cuts the
+// excerpts down to their first paragraph -- however long or short it may be.
+add_filter('get_the_excerpt', function ($excerpt, $post) {
+    if ($post->post_excerpt) return $excerpt;
+
+    // Grab the "continue" link generated before we attached to this hook.
+    preg_match('#<a.+a>$#', $excerpt, $matches);
+    $continue = str_replace('Continue', 'Keep on', $matches[0]);
+    $continue = str_replace('</a>', '&xrarr;', $continue);
+
+    // Cut the first paragraph out of the post content.
+    $excerpt = explode('<!-- /wp:paragraph -->', $post->post_content, 2)[0];
+    $excerpt = str_replace('<!-- wp:paragraph -->', '', $excerpt);
+
+    return trim($excerpt) . "<p>{$continue}</p>";
+}, 99, 2);
+
 // Do we need a shortcode or two? Perhaps.
 add_action('init', function () {
     // Converts `[win i]` to `⊞ Win`+`i`.
