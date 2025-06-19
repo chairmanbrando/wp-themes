@@ -198,7 +198,7 @@ add_filter('the_content', function ($content) {
     return str_replace(' -- ', ' ⸺ ', $content);
 });
 
-// Output any per-post CSS before the content.
+// Output any per-post CSS after the content.
 add_filter('the_content', function ($content) {
     if (! is_singular())                  return $content;
     if (! $css = get_field('custom_css')) return $content;

@@ -75,6 +75,10 @@ mark {
     text-decoration: none;
 }
 
+picture {
+    display: block;
+}
+
 .alignmid {
     @media (min-width: 100ch) {
         max-width: 96ch !important;

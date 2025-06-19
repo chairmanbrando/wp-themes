@@ -43,7 +43,7 @@
     }
 
     @media (min-width: 104ex) {
-        .alignmid {
+        .wp-block:has(> .alignmid) {
             max-width: 100ex !important;
         }
     }

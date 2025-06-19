@@ -1,3 +1,7 @@
+- Do something interesting with the site title -- something like Hive salon.
+
+- Kinda want to wrap the `code` in the `language-php` blocks in a div and then negative margin the opening `<?php` out of view. It's required to make the syntax highlighting work, but it's kinda ugly. 🤷‍♀️
+
 - Move plugin-like code out into plugins where they belong.
 
 - Is there a real use or need for JS-copying of heading ID/name anchors? I don't use headings that often, and I don't think any of them are named at the moment. And Güts doesn't auto-add names to them as other builder systems do.
