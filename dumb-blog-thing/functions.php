@@ -156,8 +156,8 @@ add_filter('get_the_excerpt', function ($excerpt, $post) {
     $continue = str_replace('</a>', '&xrarr;', $continue);
 
     // Cut the first paragraph out of the post content.
-    $excerpt = explode('<!-- /wp:paragraph -->', $post->post_content, 2)[0];
-    $excerpt = str_replace('<!-- wp:paragraph -->', '', $excerpt);
+    preg_match('#<!-- wp:paragraph -->[\s\S]+?<!-- /wp:paragraph -->#', $post->post_content, $matches);
+    $excerpt = preg_replace('#<!-- /?wp:paragraph -->#', '', $matches[0]);
 
     return trim($excerpt) . "<p>{$continue}</p>";
 }, 99, 2);
