@@ -87,10 +87,7 @@ add_filter('wp_resource_hints', function ($hints, $relation_type) {
 
 // ----- @functions --------------------------------------------------------- //
 
-function __dropdown_pages_args($args) {
-    return array_merge($args, ['post_status' => ['publish', 'draft', 'private']]);
-}
-
+// Add a callback to multiple hooks at once.
 function add_filters($names, $callback, $priority = 10, $args = 1) {
     $names = (! is_array($names)) ? [$names] : $names;
 
@@ -127,6 +124,7 @@ function twenty_twenty_one_posted_on() {
 
 // ----- @hooks ------------------------------------------------------------- //
 
+// Put some words into the otherwise empty comment textarea.
 add_filter('comment_form_field_comment', function ($field) {
     $placeholder = __('Add a comment here if you must.');
     $placeholder = sprintf('placeholder="%s"', $placeholder);
@@ -155,10 +153,14 @@ add_action('init', function () {
     });
 });
 
-// Why can you only nest published pages without code intervention?!
-add_filter('page_attributes_dropdown_pages_args', '__dropdown_pages_args');
-add_filter('quick_edit_dropdown_pages_args',      '__dropdown_pages_args');
-add_filter('rest_page_query',                     '__dropdown_pages_args');
+// Why can you only nest under published pages without code intervention?!
+add_filters([
+    'page_attributes_dropdown_pages_args',
+    'quick_edit_dropdown_pages_args',
+    'rest_page_query'
+], function ($args) {
+    return array_merge($args, ['post_status' => ['publish', 'draft', 'private']]);
+});
 
 // Move drafts to the top of your post list. Private stuff will come next.
 add_filter('posts_orderby', function ($orderby) {
