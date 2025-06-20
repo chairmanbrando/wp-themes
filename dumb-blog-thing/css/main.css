@@ -287,8 +287,36 @@ p.note {
     }
 }
 
+.site-header {
+    align-items: center;
+}
+
 .site-branding {
     margin-top: 0;
+
+    @media (min-width: 768px) {
+        max-width: 50%;
+    }
+
+    @media (min-width: 1337px) {
+        max-width: 35%;
+    }
+
+    .site-title {
+        background-color: magenta;
+        color: var(--bgMain);
+        padding: 0.125em 0.5em;
+        text-transform: uppercase;
+
+        a {
+            color: var(--bgMain) !important;
+            text-decoration: none;
+        }
+    }
+
+    .site-description {
+        text-align: justify;
+    }
 }
 
 #site-navigation {

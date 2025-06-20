@@ -153,6 +153,7 @@ add_filter('get_the_excerpt', function ($excerpt, $post) {
     // Grab the "continue" link generated before we attached to this hook.
     preg_match('#<a.+a>$#', $excerpt, $matches);
     $continue = str_replace('Continue', 'Keep on', $matches[0]);
+    $continue = str_replace('reading', 'readin\' on' , $continue);
     $continue = str_replace('</a>', '&xrarr;', $continue);
 
     // Cut the first paragraph out of the post content.
