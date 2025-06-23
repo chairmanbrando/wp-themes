@@ -244,7 +244,9 @@ p.note {
         text-wrap: pretty;
 
         &:not(.text-align-left) {
-            text-align: justify;
+            @media (min-width: 768px) {
+                text-align: justify;
+            }
         }
     }
 
@@ -263,6 +265,10 @@ p.note {
     .wp-block-list {
         padding-left: var(--global--spacing-horizontal);
         padding-right: var(--global--spacing-horizontal);
+    }
+
+    .twitter-tweet {
+        margin: 0 auto !important;
     }
 
     .code-toolbar {
@@ -315,7 +321,15 @@ p.note {
     }
 
     .site-description {
-        text-align: justify;
+        display: none;
+
+        @media (min-width: 440px) {
+            display: block;
+        }
+
+        @media (min-width: 768px) {
+            text-align: justify;
+        }
     }
 }
 
@@ -340,16 +354,24 @@ p.note {
     #page & {
         background-color: magenta;
         color: var(--bgMain);
-        font-size: 2rem;
+        font-size: 1.5rem;
         letter-spacing: -0.05em;
         line-height: 1.21;
         padding: 0.125em 0.5em;
 
+        @media (min-width: 768px) {
+            font-size: 2rem;
+        }
+
         a {
             color: var(--bgMain);
-            font-size: 2rem;
+            font-size: 1.5rem;
             line-height: 1.21;
             text-decoration: none;
+
+            @media (min-width: 768px) {
+                font-size: 2rem;
+            }
         }
     }
 }
@@ -426,6 +448,7 @@ p.note {
     .site-info {
         border-top-width: 1px;
         position: relative;
+        text-align: center;
 
         &:hover {
             &::before {
@@ -435,16 +458,22 @@ p.note {
 
         &::before {
             content: '#eidnind';
-            position: absolute;
             right: 50%;
             translate: 50% 0;
             transition: transform 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+
+            @media (min-width: 900px) {
+                position: absolute;
+            }
         }
 
         &::after {
             content: 'Copyright Forever by Default';
-            position: absolute;
             right: 0;
+
+            @media (min-width: 900px) {
+                position: absolute;
+            }
         }
 
         .powered-by {
