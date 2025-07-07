@@ -10,13 +10,18 @@
         }
     }
 
-    del, s {
+    s {
+        opacity: 0.69;
+    }
+
+    del {
         background-color: #e6999966;
         color: inherit;
         text-decoration: none;
     }
 
-    ins, mark {
+    ins,
+    mark {
         background-color: #99e69966;
         color: inherit;
         text-decoration: none;
