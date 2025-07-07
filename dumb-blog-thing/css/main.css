@@ -184,6 +184,10 @@ p.note {
         p {
             opacity: 0.80;
         }
+
+        + p.caption {
+            margin-top: calc(-1 * var(--global--spacing-unit));
+        }
     }
 }
 
