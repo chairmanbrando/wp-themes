@@ -185,7 +185,7 @@ class Tooltipper {
         const title   = tooltip.querySelector('.title');
         const extract = tooltip.querySelector('.extract');
 
-        page.extract      = page.extract.replaceAll('\n', '<br><br>');
+        page.extract      = page.extract.trim().replaceAll('\n', '<br><br>');
         title.textContent = title.textContent.replace('%title%', page.title);
         extract.innerHTML = extract.innerHTML.replace('%extract%', `<p>${page.extract}</p>`);
 

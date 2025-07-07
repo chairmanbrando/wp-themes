@@ -214,6 +214,9 @@ add_filter('the_content', function ($content) {
     $content = str_replace('=&quot;', '="', $content);
     $content = str_replace('&quot;>', '">', $content);
 
+    // They also fuck article tags even when put into code tags.
+    $content = str_replace('<article><code></code>', '<code>&lt;article></code>', $content);
+
     // Maybe double em dashes are cool? Don't know if browsers or fonts use it.
     return str_replace(' -- ', ' ⸺ ', $content);
 });
