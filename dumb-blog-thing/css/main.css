@@ -1,11 +1,6 @@
 :root {
     --bgMain: #1f1b25;
     --global--color-primary: #f7f7fd;
-
-    @media (min-width: 822px) {
-        --responsive--aligndefault-width: min(calc(100vw - 8 * var(--global--spacing-horizontal)), 64ch);
-        --responsive--alignwide-width: min(calc(100vw - 8 * var(--global--spacing-horizontal)), 128ch);
-    }
 }
 
 /* Might delete later. 🤷‍♀️ */
@@ -218,7 +213,7 @@ p.note {
         margin-bottom: 0;
         margin-top: calc(0.5 * var(--global--spacing-unit));
         opacity: 0.69;
-        text-align: center;
+        text-align: center !important;
 
         > * {
             font-size: 0.8125rem;
