@@ -1,4 +1,4 @@
-- Do something interesting with the site title -- something like Hive salon.
+- Do something interesting with the site title? See: Hive salon and its SVG masking.
 
 - Kinda want to wrap the `code` in the `language-php` blocks in a div and then negative margin the opening `<?php` out of view. It's required to make the syntax highlighting work, but it's kinda ugly. 🤷‍♀️
 
