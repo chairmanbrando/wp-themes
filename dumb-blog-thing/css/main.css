@@ -151,6 +151,21 @@ p.note {
 }
 
 #page {
+    position: relative;
+
+    &::before {
+        background-attachment: fixed;
+        background-image: url('../img/PIA19048.jpg');
+        background-position: 0 0; /* @@ */
+        background-repeat: no-repeat;
+        content: '';
+        height: 100%;
+        inset: 0;
+        opacity: 0.025;
+        position: absolute;
+        width: 100%;
+    }
+
     .page-header {
         border: 0;
         padding: 0;
