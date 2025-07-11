@@ -1,6 +1,6 @@
-- Do something interesting with the site title? See: Hive salon and its SVG masking.
+- Position Europa so its curve is cutting through the text no matter the screen size.
 
-- Kinda want to wrap the `code` in the `language-php` blocks in a div and then negative margin the opening `<?php` out of view. It's required to make the syntax highlighting work, but it's kinda ugly. 🤷‍♀️
+- Do something interesting with the site title? See: Hive salon and its SVG masking.
 
 - Move plugin-like code out into plugins where they belong.
 

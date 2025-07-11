@@ -297,6 +297,10 @@ p.note {
         &:has(+ p.caption) {
             margin-bottom: 0;
         }
+
+        .php-wrapper {
+            margin-top: -3em;
+        }
     }
 }
 

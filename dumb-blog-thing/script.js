@@ -216,12 +216,26 @@ class Tooltipper {
 }
 
 function fixMobileMenuButton() {
-    const $intheway = document.querySelector('#announcement');
-    const $button   = document.querySelector('#primary-mobile-menu');
+    const intheway = document.querySelector('#announcement');
+    const button   = document.querySelector('#primary-mobile-menu');
 
-    if (! $intheway) return;
+    if (! intheway) return;
 
-    $button.style.marginTop = `${$intheway.offsetHeight}px`;
+    button.style.marginTop = `${intheway.offsetHeight}px`;
+}
+
+// Have to delay until the highlighting is done, and if there's an event I could
+// tap into to mark such a thing, I don't know it. As usual, my distaste for the
+// syntax of the MutationObserver API has me being gross with `setInterval()`.
+function fixPhpCodeBlocks() {
+    const spanWatch = setInterval(() => {
+        if (document.querySelector('code.language-php span')) {
+            clearInterval(spanWatch);
+            setTimeout(() => {
+                $('code.language-php').wrap('<pre class="php-wrapper" />');
+            }, 100);
+        }
+    }, 100);
 }
 
 function newTabifyLinks() {
@@ -237,6 +251,7 @@ function newTabifyLinks() {
 
 document.addEventListener('DOMContentLoaded', () => {
     fixMobileMenuButton();
+    fixPhpCodeBlocks();
     newTabifyLinks();
 
     $('#comments:not(.show)').on('mouseenter touchstart', (e) => $(e.target).addClass('show'));
