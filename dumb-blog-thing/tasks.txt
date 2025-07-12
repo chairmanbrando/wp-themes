@@ -1,5 +1,3 @@
-- Fix: Repeat XHRs are prevented once the tooltip is hydrated, but until the first comes back and does that, others can be fired with rapid hovers.
-
 - Position Europa so its curve is cutting through the text no matter the screen size.
 
 - Do something interesting with the site title? See: Hive salon and its SVG masking.

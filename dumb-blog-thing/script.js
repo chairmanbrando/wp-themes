@@ -194,11 +194,13 @@ class Tooltipper {
     }
 
     mouseEnter(link) {
-        if (link.tooltipState === C.TOOLTIPSTATE.BUSTED) return;
+        if (link.tooltipState === C.TOOLTIPSTATE.WAITING) return;
+        if (link.tooltipState === C.TOOLTIPSTATE.BUSTED)  return;
 
         if (link.tooltipState === C.TOOLTIPSTATE.READY) {
             link.tooltipper.classList.add('show');
         } else {
+            link.tooltipState = C.TOOLTIPSTATE.WAITING;
             link.classList.add('wait');
 
             this.getPageExtract(link.wikiSlug, (page) => {
@@ -232,9 +234,7 @@ function fixPhpCodeBlocks() {
     const spanWatch = setInterval(() => {
         if (document.querySelector('code.language-php span')) {
             clearInterval(spanWatch);
-            setTimeout(() => {
-                $('code.language-php').wrap('<pre class="php-wrapper" />');
-            }, 100);
+            setTimeout(() => $('code.language-php').wrap('<pre class="php-wrapper" />'), 100);
         }
     }, 100);
 }
