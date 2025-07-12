@@ -81,9 +81,10 @@ class Tooltipper {
     }
 
     createTooltip(type, link, i) {
+        const extra   = getComputedStyle(document.documentElement).marginTop;
         const tooltip = document.createElement('div');
         const left    = document.querySelector('.entry-content p').offsetLeft;
-          let top     = link.getBoundingClientRect().top + link.offsetHeight + window.scrollY;
+          let top     = link.getBoundingClientRect().bottom - parseInt(extra, 10) + window.scrollY;
           let content;
 
         tooltip.type       = type;
