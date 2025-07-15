@@ -258,9 +258,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $('#comments:not(.show)').on('mouseenter touchstart', (e) => $(e.target).addClass('show'));
 
-    // We'll wait a second for other JS things to run first.
+    // We'll wait a moment for other JS things to run first.
     if (window.innerWidth > 1024) {
-        setTimeout(() => window.tt = new Tooltipper, 1000);
+        setTimeout(() => window.tt = new Tooltipper, 500);
     }
 });
 
