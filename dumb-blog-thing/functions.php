@@ -3,6 +3,51 @@
 define('CHILD_URL', get_stylesheet_directory_uri());
 define('CHILD_DIR', get_stylesheet_directory());
 
+// ----- @functions --------------------------------------------------------- //
+
+// Add a callback to multiple hooks at once.
+function add_filters($names, $callback, $priority = 10, $args = 1) {
+    $names = (! is_array($names)) ? [$names] : $names;
+
+    foreach ($names as $name) {
+        add_filter($name, $callback, $priority, $args);
+    }
+}
+
+function add_actions($names, $callback, $priority = 10, $args = 1) {
+    $names = (! is_array($names)) ? [$names] : $names;
+
+    foreach ($names as $name) {
+        add_action($name, $callback, $priority, $args);
+    }
+}
+
+// Copy-pasted from the parent to preemptively override this function so I can
+// update it to include the post's modified date. Such is how it goes when
+// there's no hooks to use!
+function twenty_twenty_one_posted_on() {
+    $times = sprintf(
+        '<time class="entry-date published" datetime="%1$s">%2$s</time>',
+        esc_attr(get_the_date(DATE_W3C)),
+        esc_html(get_the_date())
+    );
+
+    $modis = sprintf(
+        '<time class="entry-date updated" datetime="%1$s">%2$s</time>',
+        esc_attr(get_the_modified_date(DATE_W3C)),
+        esc_html(get_the_modified_date())
+    );
+
+    echo '<span class="posted-on">';
+    printf(esc_html__('Published %s', 'twentytwentyone'), $times);
+
+    if (has_tag('updated')) {
+        echo '<br>' . sprintf(esc_html__('Updated %s', 'twentytwentyone'), $modis);
+    }
+
+    echo '</span>';
+}
+
 // ----- @setup ------------------------------------------------------------- //
 
 // Replace dumb shit in the admin bar with links to your posts and pages.
@@ -85,43 +130,6 @@ add_filter('wp_resource_hints', function ($hints, $relation_type) {
     return $hints;
 }, 10, 2);
 
-// ----- @functions --------------------------------------------------------- //
-
-// Add a callback to multiple hooks at once.
-function add_filters($names, $callback, $priority = 10, $args = 1) {
-    $names = (! is_array($names)) ? [$names] : $names;
-
-    foreach ($names as $name) {
-        add_filter($name, $callback, $priority, $args);
-    }
-}
-
-// Copy-pasted from the parent to preemptively override this function so I can
-// update it to include the post's modified date. Such is how it goes when
-// there's no hooks to use!
-function twenty_twenty_one_posted_on() {
-     $times = sprintf(
-        '<time class="entry-date published" datetime="%1$s">%2$s</time>',
-        esc_attr(get_the_date(DATE_W3C)),
-        esc_html(get_the_date())
-    );
-
-    $modis = sprintf(
-        '<time class="entry-date updated" datetime="%1$s">%2$s</time>',
-        esc_attr(get_the_modified_date(DATE_W3C)),
-        esc_html(get_the_modified_date())
-    );
-
-    echo '<span class="posted-on">';
-    printf(esc_html__('Published %s', 'twentytwentyone'), $times);
-
-    if (has_tag('updated')) {
-        echo '<br>' . sprintf(esc_html__('Updated %s', 'twentytwentyone'), $modis);
-    }
-
-    echo '</span>';
-}
-
 // ----- @hooks ------------------------------------------------------------- //
 
 // Put some words into the otherwise empty comment textarea.
@@ -153,7 +161,7 @@ add_filter('get_the_excerpt', function ($excerpt, $post) {
     // Grab the "continue" link generated before we attached to this hook.
     preg_match('#<a.+a>$#', $excerpt, $matches);
     $continue = str_replace('Continue', 'Keep on', $matches[0]);
-    $continue = str_replace('reading', 'readin\' on' , $continue);
+    $continue = str_replace('reading', 'readin\' on', $continue);
     $continue = str_replace('</a>', '&xrarr;', $continue);
 
     // Cut the first paragraph out of the post content.
@@ -236,11 +244,11 @@ add_action('wp_footer', function () {
     if (! is_singular())                return;
     if (! $js = get_field('custom_js')) return;
 
-    ?>
+?>
     <script>
         (function ($) { <?= $js ?> })(jQuery);
     </script>
-    <?php
+<?php
 }, 99);
 
 // Test shit here.

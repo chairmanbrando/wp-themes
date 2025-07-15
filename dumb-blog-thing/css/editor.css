@@ -62,10 +62,15 @@
     }
 
     .wp-block {
-        font-family: Consolas, 'SF Mono', Inconsolata, Monaco, monospace !important;
-        font-size: 1rem !important;
+        /* font-family: Consolas, 'SF Mono', Inconsolata, Monaco, monospace !important; */
+        /* font-size: 1rem !important; */
+        /* line-height: 1.42 !important; */
+
+        font-family: Verdana Pro, Verdana, Open Sans, Roboto, Tahoma, sans-serif;
+        font-size: 15px;
+        line-height: 1.6;
+
         font-weight: normal;
-        line-height: 1.42 !important;
 
         a {
             color: magenta;
