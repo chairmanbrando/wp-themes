@@ -27,7 +27,8 @@
         text-decoration: none;
     }
 
-    figcaption {
+    figcaption,
+    p.caption {
         color: var(--global--color-primary);
         opacity: 0.69;
     }
