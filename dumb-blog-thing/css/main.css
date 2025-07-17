@@ -341,11 +341,18 @@ p.note {
         max-width: 35%;
     }
 
+    &:hover {
+        .site-title {
+            transform: rotateY(180deg);
+        }
+    }
+
     .site-title {
         background-color: magenta;
         color: var(--bgMain);
         padding: 0.125em 0.5em;
         text-transform: uppercase;
+        transition: transform 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045);
 
         a {
             color: var(--bgMain) !important;
@@ -371,6 +378,18 @@ p.note {
         a:not([href]) {
             color: var(--global--color-primary);
             pointer-events: none;
+        }
+    }
+}
+
+.content-area {
+    article {
+        position: relative;
+    }
+
+    .entry-footer {
+        .edit-link {
+            display: none;
         }
     }
 }
@@ -431,21 +450,21 @@ p.note {
         padding-bottom: 0;
     }
 
-    /* .entry-title {} */
-
     .entry-footer {
         border-top-width: 1px !important;
         display: block !important;
         text-align: right;
 
-        .posted-by {
-            display: flex;
-            flex-direction: column-reverse;
-        }
-
         .byline {
             display: none !important;
         }
+
+        .edit-link {
+            display: block;
+            inset: 0 1rem 0 0;
+            position: absolute;
+        }
+
     }
 }
 
