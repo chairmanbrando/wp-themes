@@ -162,7 +162,7 @@ add_filter('get_the_excerpt', function ($excerpt, $post) {
     preg_match('#<a.+a>$#', $excerpt, $matches);
     $continue = str_replace('Continue', 'Keep on', $matches[0]);
     $continue = str_replace('reading', 'readin\' on', $continue);
-    $continue = str_replace('</a>', '&xrarr;', $continue);
+    $continue = str_replace('</a>', '&xrarr;</a>', $continue);
 
     // Cut the first paragraph out of the post content.
     preg_match('#<!-- wp:paragraph -->[\s\S]+?<!-- /wp:paragraph -->#', $post->post_content, $matches);
