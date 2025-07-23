@@ -154,7 +154,7 @@ p.note {
     }
 
     &::before {
-        background: fixed black url('../img/PIA19048-40.jpg') no-repeat 0 0 / cover;
+        background: fixed #000 url('../img/PIA19048-40.jpg') no-repeat 0 0 / cover;
         height: 100%;
         inset: 0;
         opacity: 0.025;
@@ -297,7 +297,13 @@ p.note {
     }
 
     .code-toolbar {
-        pre code span {
+        pre {
+            background-color: #0003;
+            scrollbar-color: #f0f6 #0003;
+            scrollbar-width: thin;
+        }
+
+        :is(code, span) {
             font-family: Consolas, 'SF Mono', Inconsolata, Monaco, monospace;
         }
 
@@ -310,7 +316,7 @@ p.note {
         }
 
         .php-wrapper {
-            margin-top: -3.8em;
+            margin-top: -3.5em;
         }
     }
 }
@@ -458,13 +464,6 @@ p.note {
         .byline {
             display: none !important;
         }
-
-        .edit-link {
-            display: block;
-            inset: 0 1rem 0 0;
-            position: absolute;
-        }
-
     }
 }
 
