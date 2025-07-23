@@ -253,7 +253,7 @@ function newTabifyLinks() {
 
 document.addEventListener('DOMContentLoaded', () => {
     fixMobileMenuButton();
-    fixPhpCodeBlocks();
+    // fixPhpCodeBlocks(); // @@ Seems fine now...? 🤷‍♀️
     newTabifyLinks();
 
     $('#comments:not(.show)').on('mouseenter touchstart', (e) => $(e.target).addClass('show'));
