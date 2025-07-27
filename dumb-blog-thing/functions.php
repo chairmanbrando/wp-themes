@@ -179,6 +179,11 @@ add_action('init', function () {
     add_shortcode('win', function ($atts) {
         return sprintf('<kbd>⊞&hairsp;Win</kbd>+<kbd>%s</kbd>', $atts[0]);
     });
+
+    // Güts will `&amp;` HTML entities.
+    add_shortcode('nbsp', function () {
+        return '&nbsp;';
+    });
 });
 
 // Why can you only nest under published pages without code intervention?!
