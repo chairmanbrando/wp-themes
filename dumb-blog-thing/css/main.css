@@ -1,9 +1,8 @@
-:root {
+html:root {
     --bgMain: #1f1b25;
     --global--color-primary: #f7f7fd;
 }
 
-/* Might delete later. 🤷‍♀️ */
 body {
     background-attachment: fixed;
     background-image: url('../img/p1.webp');
@@ -120,6 +119,14 @@ p.note {
             }
         }
     }
+
+    &.update {
+        &::before {
+            @media (min-width: 768px) {
+                content: '\231a';
+            }
+        }
+    }
 }
 
 .text-align-left {
@@ -141,16 +148,15 @@ p.note {
 #page {
     position: relative;
 
-    * {
-        /* font-family: Consolas, 'SF Mono', Inconsolata, 'Fira Code', Monaco, monospace; */
-        /* font-size: 1rem; */
-        /* line-height: 1.42; */
-
+    /*
+       It's quite annoying trying to override all the various font-related stuff
+       the base theme does. Let's try this method instead.
+    */
+    :not(code, code span) {
         font-family: Verdana Pro, Verdana, Open Sans, Roboto, Tahoma, sans-serif;
         font-size: 15px;
-        line-height: 1.6;
-
         font-weight: normal;
+        line-height: 1.6;
     }
 
     &::before {
@@ -187,12 +193,12 @@ p.note {
     }
 
     strong {
-        font-weight: bold;
+        font-weight: bold !important;
     }
 
     blockquote {
-        border-left: 1px solid magenta;
-        background: rgba(255, 0, 255, 0.06);
+        border-left: 2px solid magenta;
+        background: #0003;
         padding: 1em;
         padding-top: 0.9em;
 
@@ -208,6 +214,10 @@ p.note {
         + p.cite {
             margin-top: calc(-1 * var(--global--spacing-unit));
         }
+    }
+
+    code {
+        font-family: Consolas, 'SF Mono', Inconsolata, Monaco, monospace;
     }
 }
 
@@ -303,10 +313,6 @@ p.note {
             scrollbar-width: thin;
         }
 
-        :is(code, span) {
-            font-family: Consolas, 'SF Mono', Inconsolata, Monaco, monospace;
-        }
-
         &:has(.alignmid) {
             max-width: 96ch;
         }
@@ -362,6 +368,7 @@ p.note {
 
         a {
             color: var(--bgMain) !important;
+            display: block;
             text-decoration: none;
         }
     }
@@ -418,17 +425,18 @@ p.note {
         padding: 0.125em 0.5em;
 
         @media (min-width: 768px) {
-            font-size: 2rem;
+            font-size: 1.75rem;
         }
 
         a {
             color: var(--bgMain);
+            display: block;
             font-size: 1.5rem;
             line-height: 1.21;
             text-decoration: none;
 
             @media (min-width: 768px) {
-                font-size: 2rem;
+                font-size: 1.75rem;
             }
         }
     }
