@@ -181,9 +181,10 @@ p.note {
 
     a {
         color: magenta;
+        transition: color 0.15s ease-in-out;
 
         &:hover {
-            color: #ffaa00;
+            color: #fa0;
             text-decoration: none;
         }
 
@@ -227,7 +228,7 @@ p.note {
     p.caption,
     p.cite,
     figcaption {
-        font-size: 0.8125rem;
+        font-size: 0.8125rem !important;
         margin-bottom: 0;
         margin-top: calc(0.5 * var(--global--spacing-unit));
         opacity: 0.69;
