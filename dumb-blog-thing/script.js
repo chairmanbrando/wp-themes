@@ -188,6 +188,7 @@ class Tooltipper {
 
         page.extract      = page.extract.trim().replaceAll('\n\n', '\n');
         page.extract      = page.extract.trim().replaceAll('\n', '<br><br>');
+        page.extract      = page.extract.trim().replaceAll('()', '');
         title.textContent = title.textContent.replace('%title%', page.title);
         extract.innerHTML = extract.innerHTML.replace('%extract%', `<p>${page.extract}</p>`);
 
