@@ -417,6 +417,8 @@ p.note {
 }
 
 .entry-title {
+    margin-bottom: 0;
+
     #page & {
         background-color: magenta;
         color: var(--bgMain);
@@ -463,6 +465,24 @@ p.note {
         border-bottom-width: 0;
         margin-bottom: 0;
         padding-bottom: 0;
+    }
+
+    .has-post-thumbnail {
+        .entry-header {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0;
+            padding-bottom: 0;
+
+            .post-thumbnail {
+                margin: 0 0 var(--global--spacing-vertical) 0;
+                order: -1;
+
+                img {
+                    margin: 0 auto;
+                }
+            }
+        }
     }
 
     .entry-footer {

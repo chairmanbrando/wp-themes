@@ -244,6 +244,15 @@ add_filter('the_content', function ($content) {
     return "{$content}\n<style>{$css}</style>";
 });
 
+// No featured images in archive views.
+add_filter('twenty_twenty_one_can_show_post_thumbnail', function ($allowed) {
+    if (! is_singular()) {
+        $allowed = false;
+    }
+
+    return $allowed;
+});
+
 // Output any per-post JS way down at the bottom.
 add_action('wp_footer', function () {
     if (! is_singular())                return;
