@@ -96,6 +96,17 @@ ul.nowrap {
     }
 }
 
+p.false-list-item {
+    position: relative;
+
+    &::before {
+        color: magenta;
+        content: '• ';
+        left: -1em;
+        position: absolute;
+    }
+}
+
 p.note {
     background: rgba(102, 102, 140, 0.2);
     padding: 1em;
