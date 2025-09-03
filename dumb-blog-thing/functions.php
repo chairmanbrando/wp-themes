@@ -146,7 +146,7 @@ add_action('get_template_part', function ($slug) {
 
     if ($text = get_field('announcement', 'option')) {
         if ($url = get_field('announcement_url', 'option')) {
-            $text .= sprintf(' <a href="%s">&xrarr;</a>', $url);
+            $text .= sprintf(' <a href="%s">🛈</a>', $url);
         }
 
         printf('<div id="announcement">%s</div>', __($text));
@@ -244,13 +244,20 @@ add_filter('the_content', function ($content) {
     return "{$content}\n<style>{$css}</style>";
 });
 
+// @@ Adjust post text on save for shortcuts? For instance, `w:Thing` could be-
+// come a Wikipedia link to Thing's page. You'll have to disable this to prevent
+// infinite loops, though.
+add_action('disabled__save_post', function ($pid, $post) {
+    $content = $post->post_content;
+    $content = preg_replace(';w:([A-Za-z0-9_-]+);', 'https://en.wikipedia.org/wiki/$1', $content);
+    $post->post_content = $content;
+
+    wp_update_post($post, false, false);
+}, 99, 2);
+
 // No featured images in archive views.
 add_filter('twenty_twenty_one_can_show_post_thumbnail', function ($allowed) {
-    if (! is_singular()) {
-        $allowed = false;
-    }
-
-    return $allowed;
+    return (! is_singular()) ? false : $allowed;
 });
 
 // Output any per-post JS way down at the bottom.
