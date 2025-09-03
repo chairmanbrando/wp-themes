@@ -220,6 +220,22 @@ class Tooltipper {
 
 }
 
+// Stops certain events from running at full speed.
+function __throttle(fn) {
+    let busy = false;
+
+    return function (...args) {
+        if (! busy) {
+            requestAnimationFrame(() => {
+                fn.apply(this, args);
+                busy = false;
+            });
+
+            busy = true;
+        }
+    };
+}
+
 function fixMobileMenuButton() {
     const intheway = document.querySelector('#announcement');
     const button   = document.querySelector('#primary-mobile-menu');
@@ -232,6 +248,9 @@ function fixMobileMenuButton() {
 // Have to delay until the highlighting is done, and if there's an event I could
 // tap into to mark such a thing, I don't know it. As usual, my distaste for the
 // syntax of the MutationObserver API has me being gross with `setInterval()`.
+//
+// @@ Seems fine now? Which makes this no longer necessary. Not sure why the
+// highlighting seemed not to work before. 🤷‍♀️
 function fixPhpCodeBlocks() {
     const spanWatch = setInterval(() => {
         if (document.querySelector('code.language-php span')) {
@@ -252,10 +271,36 @@ function newTabifyLinks() {
     });
 };
 
+function rotateHueTitleHover() {
+    const $page  = document.getElementById('page');
+    const $title = document.querySelector('.site-title');
+    const width  = $title.offsetWidth;
+
+    function hueItUp(x) {
+        $title.style.setProperty('--afterWidth', `${x / width * 100}%`);
+        $page.style.setProperty('filter', `hue-rotate(${x / width * 360}deg)`);
+    }
+
+    let xOff = localStorage.getItem('huePreference');
+
+    if (xOff) {
+        hueItUp(xOff);
+    }
+
+    $title.addEventListener('mousemove', __throttle((e) => {
+        hueItUp(e.offsetX);
+        xOff = e.offsetX;
+    }));
+
+    $title.addEventListener('mouseleave', () => {
+        localStorage.setItem('huePreference', xOff);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     fixMobileMenuButton();
-    // fixPhpCodeBlocks(); // @@ Seems fine now...? 🤷‍♀️
     newTabifyLinks();
+    rotateHueTitleHover();
 
     $('#comments:not(.show)').on('mouseenter touchstart', (e) => $(e.target).addClass('show'));
 

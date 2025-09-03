@@ -365,34 +365,24 @@ p.note {
         max-width: 35%;
     }
 
-    &:hover {
-        .site-title {
-            transform: rotateY(180deg);
-
-            &::after {
-                width: 19.5ex;
-            }
-        }
-    }
-
     .site-title {
         background-color: magenta;
         color: var(--bgMain);
         padding: 0.125em 0.5em;
         position: relative;
         text-transform: uppercase;
-        transition: transform 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045);
 
         &::after {
             background-color: magenta;
+            bottom: 0;
             content: '';
             height: 100%;
             left: 0;
             mix-blend-mode: difference;
             position: absolute;
             top: 0;
-            transition: width 0.75s linear;
-            width: 0%;
+            width: 0;
+            width: var(--afterWidth); /* Set by JS on parent. */
         }
 
         a {
@@ -430,6 +420,9 @@ p.note {
     }
 
     .entry-footer {
+        border-bottom: 0 !important;
+        padding-bottom: 0 !important;
+
         .edit-link {
             display: none;
         }
