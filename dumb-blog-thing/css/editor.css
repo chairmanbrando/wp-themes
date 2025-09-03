@@ -95,4 +95,19 @@
         padding-left: var(--global--spacing-horizontal);
         padding-right: var(--global--spacing-horizontal);
     }
+
+    .draft {
+        opacity: 0.5;
+        position: relative;
+
+        &::before {
+            color: magenta;
+            content: 'Delete?';
+            left: calc(100% + 1em);
+            line-height: 1;
+            position: absolute;
+            top: 50%;
+            translate: 0 -50%;
+        }
+    }
 }
