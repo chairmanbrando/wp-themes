@@ -221,7 +221,7 @@ class Tooltipper {
 }
 
 // Stops certain events from running at full speed.
-function __throttle(fn) {
+function throttleRaf(fn) {
     let busy = false;
 
     return function (...args) {
@@ -234,6 +234,21 @@ function __throttle(fn) {
             busy = true;
         }
     };
+}
+
+function throttleTime(fn, ms) {
+    let busy = false;
+
+    return function (...args) {
+        if (! busy) {
+            setTimeout(() => {
+                fn.apply(this, args);
+                busy = false;
+            }, ms);
+
+            busy = true;
+        }
+    }
 }
 
 function fixMobileMenuButton() {
@@ -278,29 +293,27 @@ function rotateHueTitleHover() {
 
     function hueItUp(x) {
         $title.style.setProperty('--afterWidth', `${x / width * 100}%`);
+        $page.style.setProperty('--filterHue', `hue-rotate(${x / width * 360}deg)`);
         $page.style.setProperty('filter', `hue-rotate(${x / width * 360}deg)`);
+
+        // Instead of assigning each magenta element the `--filterHue` property
+        // in CSS, for now we'll reverse the things that shouldn't be rotated.
+        $page.querySelectorAll(':scope :is(iframe, img, svg, video').forEach((e) => {
+            e.style.setProperty('filter', `hue-rotate(-${x / width * 360}deg)`);
+        });
     }
 
     let xOff = localStorage.getItem('huePreference');
+        xOff && hueItUp(xOff);
 
-    if (xOff) {
-        hueItUp(xOff);
-    }
-
-    $title.addEventListener('mousemove', __throttle((e) => {
-        hueItUp(e.offsetX);
-        xOff = e.offsetX;
-    }));
-
-    $title.addEventListener('mouseleave', () => {
-        localStorage.setItem('huePreference', xOff);
-    });
+    $title.addEventListener('mousemove', (e) => hueItUp(xOff = e.offsetX));
+    $title.addEventListener('mouseleave', () => localStorage.setItem('huePreference', xOff));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    rotateHueTitleHover();
     fixMobileMenuButton();
     newTabifyLinks();
-    rotateHueTitleHover();
 
     $('#comments:not(.show)').on('mouseenter touchstart', (e) => $(e.target).addClass('show'));
 
