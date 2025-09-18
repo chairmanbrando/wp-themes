@@ -83,12 +83,13 @@
     }
 
     h2.wp-block-heading {
-        border-bottom: 1px solid;
+        font-size: 1.3125rem;
         text-transform: uppercase;
     }
 
     h3.wp-block-heading {
-        font-size: 1.3125rem;
+        font-size: 1.15rem;
+        text-transform: uppercase;
     }
 
     .wp-block-list {

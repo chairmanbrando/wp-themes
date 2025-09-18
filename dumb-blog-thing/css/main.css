@@ -82,6 +82,17 @@ picture {
     }
 }
 
+.false-list-item {
+    position: relative;
+
+    &::before {
+        color: magenta;
+        content: '❦  ';
+        left: -1.5em;
+        position: absolute;
+    }
+}
+
 ol.long,
 ul.long {
     li+li {
@@ -93,17 +104,6 @@ ol.nowrap,
 ul.nowrap {
     >li {
         white-space: nowrap;
-    }
-}
-
-p.false-list-item {
-    position: relative;
-
-    &::before {
-        color: magenta;
-        content: '• ';
-        left: -1em;
-        position: absolute;
     }
 }
 
@@ -165,7 +165,7 @@ p.note {
     */
     :not(code, code span) {
         font-family: Verdana Pro, Verdana, Open Sans, Roboto, Tahoma, sans-serif;
-        font-size: 15px;
+        font-size: 0.9375rem;
         font-weight: normal;
         line-height: 1.6;
     }
@@ -265,13 +265,13 @@ p.note {
         }
 
         &::before {
-            content: '❦ ';
-            left: -1em;
+            content: '❦  ';
+            left: -1.5em;
         }
 
         &::after {
-            content: ' ❦';
-            right: -1em;
+            content: '  ❦';
+            right: -1.5em;
         }
     }
 
@@ -285,6 +285,10 @@ p.note {
             color: magenta;
         }
     }
+
+        ul {
+            list-style-type: '×  ';
+        }
 
     :is(p, ul, ol) {
         hyphens: auto;
@@ -309,9 +313,21 @@ p.note {
         }
     }
 
+    .wp-block-file {
+        text-align: center;
+
+        a {
+            margin-left: 0;
+        }
+
+        a[id] {
+            display: none;
+        }
+    }
+
     .wp-block-list {
-        padding-left: var(--global--spacing-horizontal);
-        padding-right: var(--global--spacing-horizontal);
+        padding-left: calc(var(--global--spacing-horizontal) + 17px);
+        padding-right: calc(var(--global--spacing-horizontal) + 17px);
     }
 
     .twitter-tweet {
@@ -412,6 +428,11 @@ p.note {
             pointer-events: none;
         }
     }
+
+    .sub-menu-toggle {
+        height: auto;
+        margin-left: -1em;
+    }
 }
 
 .content-area {
@@ -449,7 +470,7 @@ p.note {
         padding: 0.125em 0.5em;
 
         @media (min-width: 768px) {
-            font-size: 1.75rem;
+            font-size: 1.6875rem;
         }
 
         a {
@@ -460,7 +481,7 @@ p.note {
             text-decoration: none;
 
             @media (min-width: 768px) {
-                font-size: 1.75rem;
+                font-size: 1.6875rem;
             }
         }
     }
@@ -469,14 +490,21 @@ p.note {
 .entry-content {
     #page & {
         h2 {
-            background-color: magenta;
-            color: var(--bgMain);
-            padding: 0.125em 0.5em;
+            font-size: 1.3125rem;
+            position: relative;
             text-transform: uppercase;
+
+            &::before {
+                color: magenta;
+                content: '❦  ';
+                left: -1.25em;
+                position: absolute;
+            }
         }
 
         h3 {
-            font-size: 1.3125rem;
+            font-size: 1.15rem;
+            text-transform: uppercase;
         }
     }
 }
