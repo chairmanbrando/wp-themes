@@ -298,7 +298,7 @@ function rotateHueTitleHover() {
 
         // Instead of assigning each magenta element the `--filterHue` property
         // in CSS, for now we'll reverse the things that shouldn't be rotated.
-        $page.querySelectorAll(':scope :is(iframe, img, svg, video').forEach((e) => {
+        $page.querySelectorAll(':scope :is(figure, svg').forEach((e) => {
             e.style.setProperty('filter', `hue-rotate(-${x / width * 360}deg)`);
         });
     }
@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // We'll wait a moment for other JS things to run first.
     if (window.innerWidth > 1024) {
-        setTimeout(() => window.tt = new Tooltipper, 500);
+        setTimeout(() => window.tt = new Tooltipper, 1000);
     }
 });
 
