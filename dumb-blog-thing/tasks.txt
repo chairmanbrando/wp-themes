@@ -1,3 +1,5 @@
+- Add modal support for the gallery link fix.
+
 - Style the desktop submenu drop-down to look like blockquotes do.
 
 - The mobile menu styles now need looking at. The JS adjusting its margins does as well.

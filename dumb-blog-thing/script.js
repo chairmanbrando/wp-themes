@@ -236,6 +236,7 @@ function throttleRaf(fn) {
     };
 }
 
+// Stops certain events from running at full speed.
 function throttleTime(fn, ms) {
     let busy = false;
 
@@ -251,7 +252,15 @@ function throttleTime(fn, ms) {
     }
 }
 
-function fixMobileMenuButton() {
+// For some reason WP doesn't link to the full-size images. 🤷‍♀️
+function galleryLinkFix() {
+    $('.wp-block-gallery img').each(function (i, image) {
+        const src = image.src.replace(/-\d+x\d+\./, '.');
+        $(image).wrap(`<a href="${src}" target="_blank" />`);
+    });
+}
+
+function mobileMenuButtonFix() {
     const intheway = document.querySelector('#announcement');
     const button   = document.querySelector('#primary-mobile-menu');
 
@@ -266,7 +275,7 @@ function fixMobileMenuButton() {
 //
 // @@ Seems fine now? Which makes this no longer necessary. Not sure why the
 // highlighting seemed not to work before. 🤷‍♀️
-function fixPhpCodeBlocks() {
+function phpCodeBlocksFix() {
     const spanWatch = setInterval(() => {
         if (document.querySelector('code.language-php span')) {
             clearInterval(spanWatch);
@@ -312,7 +321,9 @@ function rotateHueTitleHover() {
 
 document.addEventListener('DOMContentLoaded', () => {
     rotateHueTitleHover();
-    fixMobileMenuButton();
+
+    galleryLinkFix();
+    mobileMenuButtonFix();
     newTabifyLinks();
 
     $('#comments:not(.show)').on('mouseenter touchstart', (e) => $(e.target).addClass('show'));
