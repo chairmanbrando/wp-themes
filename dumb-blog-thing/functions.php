@@ -132,6 +132,14 @@ add_filter('wp_resource_hints', function ($hints, $relation_type) {
 
 // ----- @hooks ------------------------------------------------------------- //
 
+add_action('acf/render_field/type=url', function ($field) {
+    $style = 'position: absolute; right: 0.7em; top: 50%; translate: 0 -50%';
+
+    if ($field['value']) {
+        printf('<a href="%s" target="_blank" style="%s">Revisit</a>', $field['value'], $style);
+    }
+});
+
 // Put some words into the otherwise empty comment textarea.
 add_filter('comment_form_field_comment', function ($field) {
     $placeholder = __('Add a comment here if you must.');
