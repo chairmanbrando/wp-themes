@@ -256,7 +256,7 @@ function throttleTime(fn, ms) {
 function galleryLinkFix() {
     $('.wp-block-gallery img').each(function (i, image) {
         const src = image.src.replace(/-\d+x\d+\./, '.');
-        $(image).wrap(`<a href="${src}" target="_blank" />`);
+        $(image).wrap(`<a href="${src}" target="_blank" xpopovertarget="popover" />`);
     });
 }
 
@@ -268,6 +268,17 @@ function mobileMenuButtonFix() {
 
     button.style.marginTop = `${intheway.offsetHeight}px`;
 }
+
+function newTabifyLinks() {
+    document.body.querySelectorAll('a').forEach((link) => {
+        if (link.hostname === window.location.hostname) {
+            link.classList.add('internal');
+        } else {
+            link.classList.add('external');
+            link.target = '_blank';
+        }
+    });
+};
 
 // Have to delay until the highlighting is done, and if there's an event I could
 // tap into to mark such a thing, I don't know it. As usual, my distaste for the
@@ -284,16 +295,20 @@ function phpCodeBlocksFix() {
     }, 100);
 }
 
-function newTabifyLinks() {
-    document.body.querySelectorAll('a').forEach((link) => {
-        if (link.hostname === window.location.hostname) {
-            link.classList.add('internal');
-        } else {
-            link.classList.add('external');
-            link.target = '_blank';
-        }
+function popoverHandling() {
+    $(document.body).append('<div id="popover" popover />');
+
+    const popover = $('#popover').get(0);
+
+    $('a[popovertarget]').on('click', (e) => {
+        popover.innerHTML = `<img src="${e.delegateTarget.href}">`
+        popover.showPopover(e.delegateTarget);
+        e.preventDefault();
     });
-};
+
+    // In lieu of a close button -- maybe for now, maybe forever.
+    popover.addEventListener('click', () => popover.hidePopover());
+}
 
 function rotateHueTitleHover() {
     const $page  = document.getElementById('page');
@@ -307,7 +322,7 @@ function rotateHueTitleHover() {
 
         // Instead of assigning each magenta element the `--filterHue` property
         // in CSS, for now we'll reverse the things that shouldn't be rotated.
-        $page.querySelectorAll(':scope :is(figure, svg').forEach((e) => {
+        $page.querySelectorAll(':scope :is(figure img, img, svg, video').forEach((e) => {
             e.style.setProperty('filter', `hue-rotate(-${x / width * 360}deg)`);
         });
     }
@@ -325,6 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
     galleryLinkFix();
     mobileMenuButtonFix();
     newTabifyLinks();
+    // popoverHandling();
 
     $('#comments:not(.show)').on('mouseenter touchstart', (e) => $(e.target).addClass('show'));
 

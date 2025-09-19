@@ -669,3 +669,49 @@ p.note {
         display: none;
     }
 }
+
+[popover] {
+    background-color: transparent;
+    border: 0;
+    color: #fff;
+    max-width: 50rem;
+    padding: 0;
+    position: fixed;
+
+    &:popover-open {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &::after {
+        content: '×';
+        cursor: pointer;
+        inset: 1rem 1rem auto auto;
+        font-size: 2rem;
+        line-height: 1ex;
+        position: fixed;
+        z-index: 420;
+    }
+
+    img {
+        display: block;
+        margin: 0 auto 1rem;
+    }
+
+    h3 {
+        display: inline;
+
+        &::after {
+            content: ' \2014 ';
+        }
+
+        +p {
+            display: inline;
+        }
+    }
+
+    &::backdrop {
+        backdrop-filter: blur(5px) brightness(0.5);
+    }
+}
