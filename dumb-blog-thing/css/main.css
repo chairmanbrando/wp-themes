@@ -210,7 +210,7 @@ p.note {
 
     blockquote {
         border-left: 2px solid magenta;
-        background: #0003;
+        background-color: #0003;
         padding: 1em;
         padding-top: 0.9em;
 
@@ -422,7 +422,11 @@ p.note {
 }
 
 #site-navigation {
+    --primary-nav--border-color: magenta;
+
     .menu-item {
+        background-color: transparent;
+
         a:not([href]) {
             color: var(--global--color-primary);
             pointer-events: none;
@@ -432,6 +436,14 @@ p.note {
     .sub-menu-toggle {
         height: auto;
         margin-left: -1em;
+    }
+
+    .sub-menu {
+        background-color: #0003;
+
+        a {
+            padding: var(--primary-nav--padding);
+        }
     }
 }
 

@@ -1,14 +1,14 @@
 - Add modal support for the gallery link fix.
 
-- Style the desktop submenu drop-down to look like blockquotes do.
-
 - The mobile menu styles now need looking at. The JS adjusting its margins does as well.
 
 - Move plugin-like code out into plugins where they belong.
 
     I can't recall what I meant by this, but "plugin-like code" is probably hooks and whatnot that aren't *specifically* tied to the theme.
 
-- Is there a real use or need for JS-copying of heading ID/name anchors? I don't use headings that often, and I don't think any of them are named at the moment. And Güts doesn't auto-add names to them as other builder systems do.
+- Is there a real use or need for JS-copying of heading ID/name anchors?
+
+    I don't use headings that often, and I don't think any of them are named at the moment. And Güts doesn't auto-add names to them as other builder systems do.
 
 - Figure out how to get a Wikipedia extract from a specific section should the linked URL contain a hash to one. See: https://stackoverflow.com/a/59511898
 
