@@ -253,8 +253,8 @@ add_filter('the_content', function ($content) {
 });
 
 // @@ Adjust post text on save for shortcuts? For instance, `w:Thing` could be-
-// come a Wikipedia link to Thing's page. You'll have to disable this to prevent
-// infinite loops, though.
+// come a Wikipedia link to Thing's page. The function with either need to do a
+// check for the content first or disable itself to prevent infinite loops.
 add_action('disabled__save_post', function ($pid, $post) {
     $content = $post->post_content;
     $content = preg_replace(';w:([A-Za-z0-9_-]+);', 'https://en.wikipedia.org/wiki/$1', $content);

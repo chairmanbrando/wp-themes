@@ -287,7 +287,7 @@ p.note {
     }
 
         ul {
-            list-style-type: '×  ';
+            list-style-type: '❦  ';
         }
 
     :is(p, ul, ol) {
