@@ -104,6 +104,10 @@ add_action('wp_enqueue_scripts', function () {
 
     wp_enqueue_style('child', CHILD_URL . '/css/main.css', [], filemtime(CHILD_DIR . '/css/main.css'));
     wp_enqueue_script('child', CHILD_URL . '/script.js', ['jquery'], filemtime(CHILD_DIR . '/script.js'));
+
+    if ($fgMain = get_field('main_color', 'option')) {
+        printf('<style>body { --fgMain: %s }</style>', $fgMain);
+    }
 }, 99);
 
 // Removes most emoji-related things.

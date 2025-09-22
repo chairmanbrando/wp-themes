@@ -1,5 +1,6 @@
 html:root {
     --bgMain: #1f1b25;
+    --fgMain: magenta;
     --global--color-primary: #f7f7fd;
 }
 
@@ -36,7 +37,7 @@ p sub {
 form {
     button,
     input[type="submit"] {
-        border-color: magenta;
+        border-color: var(--fgMain);
     }
 
     fieldset {
@@ -86,7 +87,7 @@ picture {
     position: relative;
 
     &::before {
-        color: magenta;
+        color: var(--fgMain);
         content: '❦  ';
         left: -1.5em;
         position: absolute;
@@ -153,7 +154,7 @@ p.note {
 }
 
 #wpadminbar {
-    border-bottom: 1px solid magenta;
+    border-bottom: 1px solid var(--fgMain);
 }
 
 #page {
@@ -191,11 +192,11 @@ p.note {
     }
 
     a {
-        color: magenta;
+        color: var(--fgMain);
         /* transition: color 0.15s ease-in-out; */
 
         &:hover {
-            color: #fa0;
+            filter: hue-rotate(180deg);
             text-decoration: none;
         }
 
@@ -209,7 +210,7 @@ p.note {
     }
 
     blockquote {
-        border-left: 2px solid magenta;
+        border-left: 2px solid var(--fgMain);
         background-color: #0003;
         padding: 1em;
         padding-top: 0.9em;
@@ -251,7 +252,7 @@ p.note {
     }
 
     hr {
-        border-color: magenta;
+        border-color: var(--fgMain);
         margin-bottom: calc(var(--global--spacing-vertical) * 1.5);
         margin-top: calc(var(--global--spacing-vertical) * 1.5);
         min-width: 150px;
@@ -259,7 +260,7 @@ p.note {
 
         &::before,
         &::after {
-            color: magenta;
+            color: var(--fgMain);
             position: absolute;
             top: -0.7em;
         }
@@ -282,7 +283,7 @@ p.note {
     ul,
     ol {
         ::marker {
-            color: magenta;
+            color: var(--fgMain);
         }
     }
 
@@ -357,7 +358,7 @@ p.note {
 
 #announcement {
     background-color: #111;
-    border-bottom: 3px solid magenta;
+    border-bottom: 3px solid var(--fgMain);
     padding: 0.5rem 1rem;
     text-align: center;
 
@@ -382,14 +383,14 @@ p.note {
     }
 
     .site-title {
-        background-color: magenta;
+        background-color: var(--fgMain);
         color: var(--bgMain);
         padding: 0.125em 0.5em;
         position: relative;
         text-transform: uppercase;
 
         &::after {
-            background-color: magenta;
+            background-color: var(--fgMain);
             bottom: 0;
             content: '';
             height: 100%;
@@ -421,8 +422,17 @@ p.note {
     }
 }
 
+/* Gods, I hate the setup of this parent theme. */
 #site-navigation {
-    --primary-nav--border-color: magenta;
+    --primary-nav--border-color: var(--fgMain);
+
+    top: 0;
+
+    .menu-button-container {
+        padding: 0;
+        padding-top: calc(0.75 * var(--global--spacing-vertical));
+        top: 0;
+    }
 
     .menu-item {
         background-color: transparent;
@@ -474,7 +484,7 @@ p.note {
     margin-bottom: 0;
 
     #page & {
-        background-color: magenta;
+        background-color: var(--fgMain);
         color: var(--bgMain);
         font-size: 1.5rem;
         letter-spacing: -0.05em;
@@ -506,11 +516,13 @@ p.note {
             position: relative;
             text-transform: uppercase;
 
-            &::before {
-                color: magenta;
-                content: '❦  ';
-                left: -1.25em;
-                position: absolute;
+            @media (min-width: 483px) {
+                &::before {
+                    color: var(--fgMain);
+                    content: '❦  ';
+                    left: -1.25em;
+                    position: absolute;
+                }
             }
         }
 
@@ -625,7 +637,7 @@ p.note {
 
 .tooltip {
     background-color: #111;
-    border: 1px solid magenta;
+    border: 1px solid var(--fgMain);
     display: none;
     max-width: var(--responsive--aligndefault-width);
     min-height: 100px;

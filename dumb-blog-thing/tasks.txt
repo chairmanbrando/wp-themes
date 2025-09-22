@@ -1,7 +1,5 @@
 - Add modal support for the gallery link fix.
 
-- The mobile menu styles now need looking at. The JS adjusting its margins does as well.
-
 - Move plugin-like code out into plugins where they belong.
 
     I can't recall what I meant by this, but "plugin-like code" is probably hooks and whatnot that aren't *specifically* tied to the theme.
