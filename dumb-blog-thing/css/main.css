@@ -1,6 +1,13 @@
 html:root {
-    --bgMain: #1f1b25;
-    --fgMain: magenta;
+    --bgMain:        #1f1b25;
+    --bgTrans:       #0003;
+    --fgMain:        magenta;
+    --fontBody:      Verdana Pro, Verdana, Open Sans, Roboto, Tahoma, sans-serif;
+    --fontCode:      Consolas, 'SF Mono', Inconsolata, Monaco, monospace;
+    --fontSize:      0.9375rem;
+    --lineHeight:    1.6;
+    --letterSpacing: normal;
+
     --global--color-primary: #f7f7fd;
 }
 
@@ -38,6 +45,8 @@ form {
     button,
     input[type="submit"] {
         border-color: var(--fgMain);
+        background-color: var(--bgTrans) !important;
+        color: var(--global--color-primary) !important;
     }
 
     fieldset {
@@ -46,12 +55,20 @@ form {
         padding: 0;
 
         &:has(input[type="radio"]) {
-            display: block;
+            align-items: center;
+            display: flex;
+
+            legend {
+                float: left; /* This won't take effect, but it will make it able to flex! */
+                margin-right: 1em;
+            }
 
             label {
                 display: inline;
                 margin: 0 1em 0 0;
             }
+
+
         }
     }
 }
@@ -165,10 +182,10 @@ p.note {
        the base theme does. Let's try this method instead.
     */
     :not(code, code span) {
-        font-family: Verdana Pro, Verdana, Open Sans, Roboto, Tahoma, sans-serif;
-        font-size: 0.9375rem;
+        font-family: var(--fontBody);
+        font-size: var(--fontSize);
         font-weight: normal;
-        line-height: 1.6;
+        line-height: var(--lineHeight);
     }
 
     &::before {
@@ -191,6 +208,7 @@ p.note {
         text-align: center;
     }
 
+    /* @@ Do a sweeping background instead. */
     a {
         color: var(--fgMain);
         /* transition: color 0.15s ease-in-out; */
@@ -211,7 +229,7 @@ p.note {
 
     blockquote {
         border-left: 2px solid var(--fgMain);
-        background-color: #0003;
+        background-color: var(--bgTrans);
         padding: 1em;
         padding-top: 0.9em;
 
@@ -230,7 +248,8 @@ p.note {
     }
 
     code {
-        font-family: Consolas, 'SF Mono', Inconsolata, Monaco, monospace;
+        font-family: var(--fontCode);
+        letter-spacing: normal;
     }
 }
 
@@ -318,6 +337,8 @@ p.note {
         text-align: center;
 
         a {
+            background-color: var(--bgTrans);
+            border-color: var(--fgMain);
             margin-left: 0;
         }
 
@@ -337,8 +358,8 @@ p.note {
 
     .code-toolbar {
         pre {
-            background-color: #0003;
-            scrollbar-color: #f0f6 #0003;
+            background-color: var(--bgTrans);
+            scrollbar-color: #f0f6 var(--bgTrans);
             scrollbar-width: thin;
         }
 
@@ -449,7 +470,7 @@ p.note {
     }
 
     .sub-menu {
-        background-color: #0003;
+        background-color: var(--bgTrans);
 
         a {
             padding: var(--primary-nav--padding);
@@ -610,6 +631,9 @@ p.note {
         }
 
         &::before {
+            background: linear-gradient(90deg, magenta, #ffc700);
+            background-clip: text;
+            color: transparent;
             content: '#eidnind';
             right: 50%;
             translate: 50% 0;

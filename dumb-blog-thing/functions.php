@@ -108,6 +108,26 @@ add_action('wp_enqueue_scripts', function () {
     if ($fgMain = get_field('main_color', 'option')) {
         printf('<style>body { --fgMain: %s }</style>', $fgMain);
     }
+
+    if ($fontBody = get_field('font_body', 'option')) {
+        printf('<style>body { --fontBody: %s }</style>', $fontBody);
+    }
+
+    if ($fontCode = get_field('font_code', 'option')) {
+        printf('<style>body { --fontCode: %s }</style>', $fontCode);
+    }
+
+    if ($fontSize = get_field('font_size', 'option')) {
+        printf('<style>body { --fontSize: %spx }</style>', $fontSize);
+    }
+
+    if ($lineHt = get_field('line_height', 'option')) {
+        printf('<style>body { --lineHeight: %s }</style>', $lineHt);
+    }
+
+    if ($letSpa = get_field('letter_spacing', 'option')) {
+        printf('<style>body { --letterSpacing: %s }</style>', $letSpa);
+    }
 }, 99);
 
 // Removes most emoji-related things.
