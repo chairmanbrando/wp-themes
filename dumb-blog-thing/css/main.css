@@ -208,18 +208,41 @@ p.note {
         text-align: center;
     }
 
-    /* @@ Do a sweeping background instead. */
     a {
         color: var(--fgMain);
-        /* transition: color 0.15s ease-in-out; */
+        position: relative;
 
         &:hover {
-            filter: hue-rotate(180deg);
+            color: var(--global--color-primary);
             text-decoration: none;
         }
 
         &:focus {
             background: transparent;
+        }
+    }
+
+    :is(p, li) a:not(:has(img)) {
+        &::after {
+            background: var(--fgMain);
+            content: '';
+            height: 1.6em;
+            left: 0;
+            mix-blend-mode: color;
+            position: absolute;
+            top: 50%;
+            transform: scaleX(0%);
+            transform-origin: right center;
+            translate: 0 -50%;
+            transition: transform 0.25s ease-in-out;
+            width: 100%;
+        }
+
+        &:hover {
+            &::after {
+                transform: scaleX(100%);
+                transform-origin: left center;
+            }
         }
     }
 
@@ -466,7 +489,7 @@ p.note {
 
     .sub-menu-toggle {
         height: auto;
-        margin-left: -1em;
+        margin-left: -1.25em;
     }
 
     .sub-menu {
