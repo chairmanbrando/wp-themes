@@ -409,6 +409,10 @@ p.note {
             margin-top: -3.5em;
         }
     }
+
+    .post-navigation {
+        display: none;
+    }
 }
 
 #announcement {
@@ -730,6 +734,8 @@ p.note {
 }
 
 #comments {
+    margin-bottom: 0;
+
     &::before {
         content: 'Hover or tap here if you wish to leave a comment.';
         display: block;
