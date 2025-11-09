@@ -81,16 +81,13 @@ class Tooltipper {
     }
 
     createTooltip(type, link, i) {
-        const extra   = getComputedStyle(document.documentElement).marginTop;
         const tooltip = document.createElement('div');
-        const left    = document.querySelector('.entry-content p').offsetLeft;
-          let top     = link.getBoundingClientRect().bottom - parseInt(extra, 10) + window.scrollY;
           let content;
 
-        tooltip.type       = type;
-        tooltip.id         = `tooltip-${i}`;
-        tooltip.style.top  = `calc(${top}px + 1rem)`;
-        tooltip.style.left = `calc(${left}px + 1rem)`;
+        // `left` and `top` are calculated on initial hover.
+        tooltip.type = type;
+        tooltip.id   = `tooltip-${i}`;
+
         tooltip.classList.add('tooltip');
 
         switch (type) {
@@ -199,6 +196,16 @@ class Tooltipper {
         if (link.tooltipState === C.TOOLTIPSTATE.WAITING) return;
         if (link.tooltipState === C.TOOLTIPSTATE.BUSTED)  return;
 
+        // @@ Make this a method.
+        if (! link.tooltipper.style.top) {
+            const extra = getComputedStyle(document.documentElement).marginTop;
+            const left  = document.querySelector('.entry-content p').offsetLeft;
+            const top   = link.getBoundingClientRect().bottom - parseInt(extra, 10) + window.scrollY;
+
+            link.tooltipper.style.top = `calc(${top}px + 1rem)`;
+            link.tooltipper.style.left = `calc(${left}px + 1rem)`;
+        }
+
         if (link.tooltipState === C.TOOLTIPSTATE.READY) {
             link.tooltipper.classList.add('show');
         } else {
@@ -284,7 +291,7 @@ function newTabifyLinks() {
 // tap into to mark such a thing, I don't know it. As usual, my distaste for the
 // syntax of the MutationObserver API has me being gross with `setInterval()`.
 //
-// @@ Seems fine now? Which makes this no longer necessary. Not sure why the
+// @dev Seems fine now? Which makes this no longer necessary. Not sure why the
 // highlighting seemed not to work before. 🤷‍♀️
 function phpCodeBlocksFix() {
     const spanWatch = setInterval(() => {
@@ -344,7 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $('#comments:not(.show)').on('mouseenter touchstart', (e) => $(e.target).addClass('show'));
 
-    // We'll wait a moment for other JS things to run first.
+    // We'll wait a moment for other JS things (like embeds) to run first.
     if (window.innerWidth > 1024) {
         setTimeout(() => window.tt = new Tooltipper, 1000);
     }

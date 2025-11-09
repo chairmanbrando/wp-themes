@@ -1,8 +1,11 @@
 - Inject theme text settings into editor styles as well.
 
-- The gallery images are getting hit by the hue rotating even though images and videos aren't supposed to be.
+- The gallery images are getting hit by the hue rotating even though images and
+videos aren't supposed to be. Entry title links might be too.
 
 - Add modal support for the gallery link fix.
+
+-----
 
 - Move plugin-like code out into plugins where they belong.
 
