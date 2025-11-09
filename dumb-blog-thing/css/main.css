@@ -550,6 +550,13 @@ p.note {
             font-size: 1.6875rem;
         }
 
+        @media (min-width: 1024px) {
+            margin-left: -0.5em;
+            margin-right: -0.5em;
+            max-width: calc(100% + 1em);
+            width: calc(100% + 1em);
+        }
+
         a {
             color: var(--bgMain);
             display: block;
