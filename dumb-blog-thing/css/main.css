@@ -524,9 +524,24 @@ p.note {
     .entry-footer {
         border-bottom: 0 !important;
         padding-bottom: 0 !important;
+        text-align: right;
+
+        .byline {
+            display: none !important;
+        }
+
+        .posted-on {
+            margin-right: 0 !important;
+        }
 
         .edit-link {
             display: none;
+        }
+
+        body:not(.singular) & {
+            .tags-links {
+                display: none;
+            }
         }
     }
 }
@@ -627,11 +642,6 @@ p.note {
     .entry-footer {
         border-top-width: 1px !important;
         display: block !important;
-        text-align: right;
-
-        .byline {
-            display: none !important;
-        }
     }
 }
 
