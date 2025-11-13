@@ -207,14 +207,51 @@ add_filter('get_the_excerpt', function ($excerpt, $post) {
 
 // Do we need a shortcode or two? Perhaps.
 add_action('init', function () {
-    // Converts `[win i]` to `⊞ Win`+`i`.
-    add_shortcode('win', function ($atts) {
-        return sprintf('<kbd>⊞&hairsp;Win</kbd>+<kbd>%s</kbd>', $atts[0]);
+    // Given, e.g. `[keys Cmd-Shift-P]`, returns `⌘ Cmd`+`Shift`+`P`.
+    add_shortcode('keys', function ($atts) {
+        $keys = explode('-', $atts[0]);
+        $out  = '';
+
+        foreach ($keys as $key) {
+            switch (strtolower($key)) {
+                case 'cmd' :
+                case 'command' :
+                    $out .= '<kbd>⌘&hairsp;Cmd</kbd>+';
+                    break;
+                case 'shift' :
+                    $out .= '<kbd>⇧&hairsp;Shift</kbd>+';
+                    break;
+                case 'opt' :
+                case 'option' :
+                    $out .= '<kbd>⌥&hairsp;Opt</kbd>+';
+                    break;
+                case 'ctrl' :
+                case 'control' :
+                    $out .= '<kbd>⌃&hairsp;Ctrl</kbd>+';
+                    break;
+                case 'alt' :
+                    $out .= '<kbd>⎇&hairsp;Alt</kbd>+';
+                    break;
+                case 'win' :
+                case 'windows' :
+                    $out .= '<kbd>⊞&hairsp;Win</kbd>+';
+                    break;
+                default:
+                    $out .= sprintf('<kbd>%s</kbd>+', $key);
+            }
+        }
+
+        return rtrim($out, '+');
     });
 
     // Güts will `&amp;` HTML entities.
     add_shortcode('nbsp', function () {
         return '&nbsp;';
+    });
+
+    // Converts `[win i]` to `⊞ Win`+`i`. @deprecated Use `[keys Win-I]` instead.
+    add_shortcode('win', function ($atts) {
+        return sprintf('<kbd>⊞&hairsp;Win</kbd>+<kbd>%s</kbd>', $atts[0]);
     });
 });
 
