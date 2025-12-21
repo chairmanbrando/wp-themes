@@ -214,29 +214,33 @@ add_action('init', function () {
 
         foreach ($keys as $key) {
             switch (strtolower($key)) {
+                case 'alt' :
+                    $out .= '<kbd>⎇&hairsp;Alt</kbd>+';
+                    break;
                 case 'cmd' :
                 case 'command' :
                     $out .= '<kbd>⌘&hairsp;Cmd</kbd>+';
-                    break;
-                case 'shift' :
-                    $out .= '<kbd>⇧&hairsp;Shift</kbd>+';
-                    break;
-                case 'opt' :
-                case 'option' :
-                    $out .= '<kbd>⌥&hairsp;Opt</kbd>+';
                     break;
                 case 'ctrl' :
                 case 'control' :
                     $out .= '<kbd>⌃&hairsp;Ctrl</kbd>+';
                     break;
-                case 'alt' :
-                    $out .= '<kbd>⎇&hairsp;Alt</kbd>+';
+                case 'del' :
+                case 'delete' :
+                    $out .= '<kbd>⌫&hairsp;Del</kbd>+';
+                    break;
+                case 'opt' :
+                case 'option' :
+                    $out .= '<kbd>⌥&hairsp;Opt</kbd>+';
+                    break;
+                case 'shift' :
+                    $out .= '<kbd>⇧&hairsp;Shift</kbd>+';
                     break;
                 case 'win' :
                 case 'windows' :
                     $out .= '<kbd>⊞&hairsp;Win</kbd>+';
                     break;
-                default:
+                default :
                     $out .= sprintf('<kbd>%s</kbd>+', $key);
             }
         }
@@ -247,6 +251,11 @@ add_action('init', function () {
     // Güts will `&amp;` HTML entities.
     add_shortcode('nbsp', function () {
         return '&nbsp;';
+    });
+
+    // Güts will `&amp;` HTML entities.
+    add_shortcode('shy', function () {
+        return '&shy;';
     });
 
     // Converts `[win i]` to `⊞ Win`+`i`. @deprecated Use `[keys Win-I]` instead.
