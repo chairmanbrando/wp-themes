@@ -1,7 +1,6 @@
-- Inject theme text settings into editor styles as well.
+- Do I want the site back to a single wide "branding" section and menu? Maybe. Also, what if the posts looked something more like controlai.com/blog?
 
-- The gallery images are getting hit by the hue rotating even though images and
-videos aren't supposed to be. Entry title links might be too.
+- Inject theme text settings into editor styles as well.
 
 - Add modal support for the gallery link fix.
 
@@ -17,4 +16,4 @@ videos aren't supposed to be. Entry title links might be too.
 
 - Figure out how to get a Wikipedia extract from a specific section should the linked URL contain a hash to one. See: https://stackoverflow.com/a/59511898
 
-    So, it turns out you can't get an extract from a section. You have to do one query to find the number of sections and their metadata, match one of them up to the hash in the link, and then do a second query to get that section. Doing so will give you *all* of the contents of that section, rather than a maximum of 1200 characters as currently set for extracts, and then you have to trim it down and process it. Doesn't seem worth it, to be honest.
+    So, it turns out you can't get an extract from a section. You have to do one query to find the number of sections and their metadata, match one of them up to the hash in the link, and then do a second query to get that section. Doing so will give you *all* of the contents of that section, rather than a maximum of 1200 characters of only text as currently set for extracts, and then you have to trim it down and process it. Doesn't seem worth it, to be honest.
