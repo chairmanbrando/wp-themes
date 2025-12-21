@@ -390,6 +390,20 @@ p.note {
         padding-right: calc(var(--global--spacing-horizontal) + 17px);
     }
 
+    .wp-block-gallery {
+        .wp-block-image {
+            &:has(figcaption)::before {
+                display: none;
+            }
+
+            figcaption {
+                background: transparent;
+                padding: 0;
+                position: static;
+            }
+        }
+    }
+
     .twitter-tweet {
         margin: 0 auto !important;
     }
