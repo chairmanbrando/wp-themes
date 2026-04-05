@@ -411,6 +411,7 @@ p.note {
     .code-toolbar {
         pre {
             background-color: var(--bgTrans);
+            padding: 1em;
             scrollbar-color: #f0f6 var(--bgTrans);
             scrollbar-width: thin;
         }
@@ -561,7 +562,13 @@ p.note {
                 display: none;
             }
         }
+
+        body:is(.home, .archive) & {
+            margin-top: calc(-2.5 * var(--global--spacing-vertical));
+        }
     }
+
+    
 }
 
 .entry-header {
@@ -646,7 +653,9 @@ p.note {
             margin-bottom: 0;
             padding-bottom: 0;
 
+            /* The "design" kinda sucks for it, but it's needed for cards. */
             .post-thumbnail {
+                display: none;
                 margin: 0 0 var(--global--spacing-vertical) 0;
                 order: -1;
 
@@ -790,6 +799,10 @@ p.note {
     .required-field-message,
     label[for="comment"] {
         display: none;
+    }
+
+    textarea {
+        height: 100px;
     }
 }
 
