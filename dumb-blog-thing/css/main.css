@@ -4,6 +4,7 @@ html:root {
     --fgMain:        magenta;
     --fontBody:      Verdana Pro, Verdana, Open Sans, Roboto, Tahoma, sans-serif;
     --fontCode:      Consolas, 'SF Mono', Inconsolata, Monaco, monospace;
+    --fontHead:      Roboto, Helvetica, Arial, sans-serif;
     --fontSize:      0.9375rem;
     --lineHeight:    1.6;
     --letterSpacing: normal;
@@ -184,6 +185,7 @@ p.note {
         font-family: var(--fontBody);
         font-size: var(--fontSize);
         font-weight: normal;
+        letter-spacing: var(--letterSpacing);
         line-height: var(--lineHeight);
     }
 
@@ -476,13 +478,14 @@ p.note {
             mix-blend-mode: difference;
             position: absolute;
             top: 0;
-            width: 0;
-            width: var(--afterWidth); /* Set by JS on parent. */
+            width: 100%;
+            /* width: var(--afterWidth); Set by JS on parent. */
         }
 
         a {
             color: var(--bgMain) !important;
             display: block;
+            font-family: var(--fontHead) !important;
             text-decoration: none;
         }
     }
@@ -585,6 +588,7 @@ p.note {
     #page & {
         background-color: var(--fgMain);
         color: var(--bgMain);
+        font-family: var(--fontHead);
         font-size: 1.5rem;
         letter-spacing: -0.05em;
         line-height: 1.21;
@@ -618,6 +622,7 @@ p.note {
 .entry-content {
     #page & {
         h2 {
+            font-family: var(--fontHead);
             font-size: 1.3125rem;
             position: relative;
             text-transform: uppercase;
