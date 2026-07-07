@@ -302,10 +302,10 @@ add_filter('the_content', function ($content) {
     $content = str_replace('...', '&hellip;', $content);
 
     // WPE fucks inline code that links somewhere, so let's undo that.
-    $content = preg_replace('/<code>&lt;a(.+?)&gt;/', '<a$1><code>', $content);
-    $content = str_replace('&lt;/a&gt;</code>', '</code></a>', $content);
-    $content = str_replace('=&quot;', '="', $content);
-    $content = str_replace('&quot;>', '">', $content);
+    // $content = preg_replace('/<code>&lt;a(.+?)&gt;/', '<a$1><code>', $content);
+    // $content = str_replace('&lt;/a&gt;</code>', '</code></a>', $content);
+    // $content = str_replace('=&quot;', '="', $content);
+    // $content = str_replace('&quot;>', '">', $content);
 
     // They also fuck article tags even when put into code tags.
     $content = str_replace('<article><code></code>', '<code>&lt;article></code>', $content);
