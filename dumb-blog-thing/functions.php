@@ -109,6 +109,10 @@ add_action('wp_enqueue_scripts', function () {
         printf('<style>body { --fgMain: %s }</style>', $fgMain);
     }
 
+    if ($fontHead = get_field('font_heading', 'option')) {
+        printf('<style>body { --fontHead: %s }</style>', $fontHead);
+    }
+
     if ($fontBody = get_field('font_body', 'option')) {
         printf('<style>body { --fontBody: %s }</style>', $fontBody);
     }

@@ -486,7 +486,8 @@ p.note {
         a {
             color: var(--bgMain) !important;
             display: block;
-            /* font-family: var(--fontHead) !important; */
+            font-family: var(--fontHead) !important;
+            font-weight: bold !important;
             text-decoration: none;
         }
     }
@@ -572,7 +573,7 @@ p.note {
         }
     }
 
-    
+
 }
 
 .entry-header {
@@ -589,8 +590,9 @@ p.note {
     #page & {
         background-color: var(--fgMain);
         color: var(--bgMain);
-        /* font-family: var(--fontHead); */
+        font-family: var(--fontHead);
         font-size: 1.5rem;
+        font-weight: bold;
         letter-spacing: -0.05em;
         line-height: 1.21;
         padding: 0.125em 0.5em;
@@ -610,7 +612,9 @@ p.note {
         a {
             color: var(--bgMain);
             display: block;
+            font-family: var(--fontHead);
             font-size: 1.5rem;
+            font-weight: bold;
             line-height: 1.21;
             text-decoration: none;
 
@@ -624,7 +628,7 @@ p.note {
 .entry-content {
     #page & {
         h2 {
-            /* font-family: var(--fontHead); */
+            font-family: var(--fontHead);
             font-size: 1.3125rem;
             position: relative;
             text-transform: uppercase;
