@@ -469,6 +469,7 @@ p.note {
         padding: 0.125em 0.5em;
         position: relative;
         text-transform: uppercase;
+        text-align: center;
 
         &::after {
             background-color: var(--fgMain);
@@ -593,10 +594,10 @@ p.note {
         font-family: var(--fontHead);
         font-size: 1.5rem;
         font-weight: bold;
-        letter-spacing: -0.05em;
         line-height: 1.21;
         padding: 0.125em 0.5em;
         text-transform: uppercase;
+        text-align: center;
 
         @media (min-width: 768px) {
             font-size: 1.6875rem;
