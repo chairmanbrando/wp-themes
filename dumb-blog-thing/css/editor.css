@@ -36,7 +36,6 @@
     figcaption,
     p.caption {
         color: var(--global--color-primary);
-        margin-top: -1.5em;
         opacity: 0.69;
         text-align: center !important;
     }
