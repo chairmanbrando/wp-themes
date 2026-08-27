@@ -71,7 +71,7 @@ class Tooltipper {
 
         this.#images.forEach((image) => {
             image.addEventListener('mouseenter', (e) => {
-                e.target.tooltipper.classList.add('show');
+                this.mouseEnter(e.target);
             });
 
             image.addEventListener('mouseleave', (e) => {
@@ -194,16 +194,20 @@ class Tooltipper {
 
     mouseEnter(link) {
         if (link.tooltipState === C.TOOLTIPSTATE.WAITING) return;
-        if (link.tooltipState === C.TOOLTIPSTATE.BUSTED)  return;
+        if (link.tooltipState === C.TOOLTIPSTATE.BUSTED) return;
 
-        // @@ Make this a method.
         if (! link.tooltipper.style.top) {
             const extra = getComputedStyle(document.documentElement).marginTop;
-            const left  = document.querySelector('.entry-content p').offsetLeft;
-            const top   = link.getBoundingClientRect().bottom - parseInt(extra, 10) + window.scrollY;
+            const left = document.querySelector('.entry-content p').offsetLeft;
+            const top = link.getBoundingClientRect().bottom - parseInt(extra, 10) + window.scrollY;
 
             link.tooltipper.style.top = `calc(${top}px + 1rem)`;
             link.tooltipper.style.left = `calc(${left}px + 1rem)`;
+        }
+
+        if (link.tooltipType === C.TOOLTIPTYPE.LOCALIMAGE) {
+            link.tooltipper.classList.add('show');
+            return;
         }
 
         if (link.tooltipState === C.TOOLTIPSTATE.READY) {
@@ -217,7 +221,7 @@ class Tooltipper {
                     link.tooltipState = C.TOOLTIPSTATE.READY;
                     link.tooltipper.classList.add('show');
                 } else {
-                    link.tooltipState = C.TOOLTIPSTATE.BUSTED
+                    link.tooltipState = C.TOOLTIPSTATE.BUSTED;
                 }
 
                 link.classList.remove('wait');
