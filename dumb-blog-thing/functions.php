@@ -125,6 +125,10 @@ add_action('wp_enqueue_scripts', function () {
         printf('<style>body { --fontSize: %spx }</style>', $fontSize);
     }
 
+    if ($fontSizeCode = get_field('font_size_code', 'option')) {
+        printf('<style>body { --fontSizeCode: %spx }</style>', $fontSizeCode);
+    }
+
     if ($lineHt = get_field('line_height', 'option')) {
         printf('<style>body { --lineHeight: %s }</style>', $lineHt);
     }

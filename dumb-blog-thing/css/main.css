@@ -6,6 +6,7 @@ html:root {
     --fontCode:      Consolas, 'SF Mono', Inconsolata, Monaco, monospace;
     --fontHead:      Roboto, Helvetica, Arial, sans-serif;
     --fontSize:      0.9375rem;
+    --fontSizeCode:  15px;
     --lineHeight:    1.6;
     --letterSpacing: normal;
 
@@ -414,6 +415,7 @@ p.note {
     .code-toolbar {
         pre {
             background-color: var(--bgTrans);
+            font-size: var(--fontSizeCode);
             padding: 1em;
             scrollbar-color: #f0f6 var(--bgTrans);
             scrollbar-width: thin;
