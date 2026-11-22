@@ -170,6 +170,32 @@ add_action('wp_enqueue_scripts', function () {
     }
 }, 99);
 
+// Put every stylesheet but ours into one `base` cascade layer. Unlayered rules
+// beat layered ones regardless of specificity, so main.css wins without IDs or
+// `!important`. Sharing one layer keeps how the others fight among themselves.
+add_filter('style_loader_tag', function ($tag, $handle, $href, $media) {
+    if (is_admin() || $handle === 'child')    return $tag;
+    if (strpos($tag, 'stylesheet') === false) return $tag;
+
+    $href  = esc_url_raw(html_entity_decode($href));
+    $media = ($media && $media !== 'all') ? " {$media}" : '';
+
+    return sprintf("<style id=\"%s-css\">@import url(\"%s\") layer(base)%s;</style>\n", esc_attr($handle), $href, $media);
+}, 10, 4);
+
+// Inline styles attached to those handles need the same treatment.
+add_actions(['wp_print_styles', 'wp_print_footer_scripts'], function () {
+    if (is_admin()) return;
+
+    foreach (wp_styles()->registered as $handle => $style) {
+        if ($handle === 'child' || empty($style->extra['after'])) continue;
+
+        // Strip any earlier wrapping so late additions end up inside too.
+        $after = array_values(array_diff($style->extra['after'], ['@layer base {', '}']));
+        $style->extra['after'] = array_merge(['@layer base {'], $after, ['}']);
+    }
+}, 1, 0);
+
 // Removes most emoji-related things.
 remove_action('wp_head',             'print_emoji_detection_script', 7);
 remove_action('admin_print_scripts', 'print_emoji_detection_script');

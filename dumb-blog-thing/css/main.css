@@ -1,4 +1,12 @@
-html:root {
+/**
+ * Every other stylesheet on the page -- parent, core, plugins -- is imported
+ * into a `base` cascade layer by functions.php. Unlayered rules like these beat
+ * layered ones no matter the specificity, so nothing here needs `!important`
+ * or an ID just to win. IDs used purely for scoping are wrapped in `:where()`
+ * so they don't add weight and these rules can fight fairly among themselves.
+ */
+
+:root {
     --bgMain:        #1f1b25;
     --bgTrans:       #0003;
     --fgMain:        magenta;
@@ -20,35 +28,33 @@ body {
 
 /* Just trying to make sure these don't affect line heights. */
 p :is(sup, sub) {
-    display: inline !important;
-    font-size: 75% !important;
-    line-height: 1 !important;
-    padding: 0 !important;
-    position: relative !important;
+    display: inline;
+    font-size: 75%;
+    line-height: 1;
+    padding: 0;
+    position: relative;
 
     a {
-        line-height: 0 !important;
+        line-height: 0;
     }
 }
 
 p sup {
-    top: 0 !important;
-    vertical-align: top !important;
-    vertical-align: super !important;
+    top: 0;
+    vertical-align: super;
 }
 
 p sub {
-    bottom: 0 !important;
-    vertical-align: bottom !important;
-    vertical-align: sub !important;
+    bottom: 0;
+    vertical-align: sub;
 }
 
 form {
     button,
     input[type="submit"] {
         border-color: var(--fgMain);
-        background-color: var(--bgTrans) !important;
-        color: var(--global--color-primary) !important;
+        background-color: var(--bgTrans);
+        color: var(--global--color-primary);
     }
 
     fieldset {
@@ -69,8 +75,6 @@ form {
                 display: inline;
                 margin: 0 1em 0 0;
             }
-
-
         }
     }
 }
@@ -98,7 +102,7 @@ picture {
 
 .alignmid {
     @media (min-width: 100ch) {
-        max-width: 96ch !important;
+        max-width: 96ch;
     }
 }
 
@@ -178,18 +182,6 @@ p.note {
 #page {
     position: relative;
 
-    /*
-       It's quite annoying trying to override all the various font-related stuff
-       the base theme does. Let's try this method instead.
-    */
-    :not(code, code span) {
-        font-family: var(--fontBody);
-        font-size: var(--fontSize);
-        font-weight: normal;
-        letter-spacing: var(--letterSpacing);
-        line-height: var(--lineHeight);
-    }
-
     &::before {
         background: fixed #000 url('../img/PIA19048-40.jpg') no-repeat 0 0 / cover;
         height: 100%;
@@ -202,6 +194,20 @@ p.note {
         @media (min-width: 768px) {
             content: '';
         }
+    }
+}
+
+:where(#page) {
+    /*
+       Blanket font reset with zero specificity: it still beats everything in
+       the base layer, but any rule in this file that sets a font prop wins.
+    */
+    :where(:not(code, code span)) {
+        font-family: var(--fontBody);
+        font-size: var(--fontSize);
+        font-weight: normal;
+        letter-spacing: var(--letterSpacing);
+        line-height: var(--lineHeight);
     }
 
     .page-header {
@@ -223,7 +229,7 @@ p.note {
     }
 
     strong {
-        font-weight: bold !important;
+        font-weight: bold;
     }
 
     blockquote {
@@ -291,15 +297,17 @@ p.note {
 
 #primary {
     overflow-x: hidden;
+}
 
+:where(#primary) {
     p.caption,
     p.cite,
     figcaption {
-        font-size: 0.8125rem !important;
+        font-size: 0.8125rem;
         margin-bottom: 0;
         margin-top: calc(0.5 * var(--global--spacing-unit));
         opacity: 0.69;
-        text-align: center !important;
+        text-align: center;
 
         > * {
             font-size: 0.8125rem;
@@ -343,20 +351,20 @@ p.note {
         }
     }
 
-        ul {
-            /* list-style-type: '❦  '; */
-            list-style-type: disclosure-closed;
-        }
+    ul {
+        /* list-style-type: '❦  '; */
+        list-style-type: disclosure-closed;
+    }
 
-        ol {
-            list-style-type: upper-roman;
-        }
+    ol {
+        list-style-type: upper-roman;
+    }
 
     :is(p, ul, ol) {
         hyphens: auto;
         text-wrap: pretty;
 
-        &:not(.text-align-left) {
+        &:not(.text-align-left, .caption, .cite) {
             @media (min-width: 768px) {
                 text-align: justify;
             }
@@ -408,6 +416,7 @@ p.note {
         }
     }
 
+    /* Twitter's script puts margins in a `style` attribute. */
     .twitter-tweet {
         margin: 0 auto !important;
     }
@@ -468,10 +477,9 @@ p.note {
     .site-title {
         background-color: var(--fgMain);
         color: var(--bgMain);
-        font-family: var(--fontHead) !important;
-        font-size: 1.5rem !important;
-        font-weight: bold !important;
-        line-height: 1.21;
+        font-family: var(--fontHead);
+        font-size: 1.5rem;
+        font-weight: bold;
         padding: 0.125em 0.5em;
         position: relative;
         text-align: center;
@@ -505,7 +513,6 @@ p.note {
     }
 }
 
-/* Gods, I hate the setup of this parent theme. */
 #site-navigation {
     --primary-nav--border-color: var(--fgMain);
 
@@ -546,16 +553,16 @@ p.note {
     }
 
     .entry-footer {
-        border-bottom: 0 !important;
-        padding-bottom: 0 !important;
+        border-bottom: 0;
+        padding-bottom: 0;
         text-align: right;
 
         .byline {
-            display: none !important;
+            display: none;
         }
 
         .posted-on {
-            margin-right: 0 !important;
+            margin-right: 0;
         }
 
         .edit-link {
@@ -572,8 +579,6 @@ p.note {
             margin-top: calc(-2.5 * var(--global--spacing-vertical));
         }
     }
-
-
 }
 
 .entry-header {
@@ -585,68 +590,63 @@ p.note {
 }
 
 .entry-title {
+    background-color: var(--fgMain);
+    color: var(--bgMain);
+    font-family: var(--fontHead);
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1.21;
     margin-bottom: 0;
+    padding: 0.125em 0.5em;
+    text-transform: uppercase;
+    text-align: center;
 
-    #page & {
-        background-color: var(--fgMain);
+    @media (min-width: 768px) {
+        font-size: 1.6875rem;
+    }
+
+    @media (min-width: 1024px) {
+        margin-left: -0.5em;
+        margin-right: -0.5em;
+        max-width: calc(100% + 1em);
+        width: calc(100% + 1em);
+    }
+
+    a {
         color: var(--bgMain);
+        display: block;
         font-family: var(--fontHead);
         font-size: 1.5rem;
         font-weight: bold;
         line-height: 1.21;
-        padding: 0.125em 0.5em;
-        text-transform: uppercase;
-        text-align: center;
+        text-decoration: none;
 
         @media (min-width: 768px) {
             font-size: 1.6875rem;
-        }
-
-        @media (min-width: 1024px) {
-            margin-left: -0.5em;
-            margin-right: -0.5em;
-            max-width: calc(100% + 1em);
-            width: calc(100% + 1em);
-        }
-
-        a {
-            color: var(--bgMain);
-            display: block;
-            font-family: var(--fontHead);
-            font-size: 1.5rem;
-            font-weight: bold;
-            line-height: 1.21;
-            text-decoration: none;
-
-            @media (min-width: 768px) {
-                font-size: 1.6875rem;
-            }
         }
     }
 }
 
 .entry-content {
-    #page & {
-        h2 {
-            font-family: var(--fontHead);
-            font-size: 1.3125rem;
-            position: relative;
-            text-transform: uppercase;
+    h2 {
+        font-family: var(--fontHead);
+        font-size: 1.3125rem;
+        position: relative;
+        text-transform: uppercase;
 
-            @media (min-width: 483px) {
-                &::before {
-                    color: var(--fgMain);
-                    content: '❦  ';
-                    left: -1.25em;
-                    position: absolute;
-                }
+        @media (min-width: 483px) {
+            &::before {
+                color: var(--fgMain);
+                content: '❦  ';
+                left: -1.25em;
+                position: absolute;
             }
         }
+    }
 
-        h3 {
-            font-size: 1.15rem;
-            text-transform: uppercase;
-        }
+    h3 {
+        font-size: 1.15rem;
+        text-transform: uppercase;
     }
 }
 
@@ -678,13 +678,13 @@ p.note {
     }
 
     .entry-footer {
-        border-top-width: 1px !important;
-        display: block !important;
+        border-top-width: 1px;
+        display: block;
     }
 }
 
 /* Not sure what the base theme was trying to accomplish with this nonsense. */
-.entry-content>[class="wp-block-image"]+* {
+:where(.entry-content > [class="wp-block-image"]) + * {
     margin-top: calc(0.666 * var(--global--spacing-vertical));
 
     @media (min-width: 482px) {
