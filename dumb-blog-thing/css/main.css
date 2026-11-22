@@ -261,9 +261,10 @@ p.note {
         a {
             color: var(--fgMain);
             position: relative;
+            transition: color 0.25s ease-in-out;
 
             &:hover {
-                color: var(--global--color-primary);
+                color: var(--bgMain);
                 filter: none;
                 text-decoration: none;
             }
