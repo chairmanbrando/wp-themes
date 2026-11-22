@@ -225,6 +225,16 @@ add_action('get_template_part', function ($slug) {
     }
 });
 
+// Unlink the site title. The branding part is loaded right before the nav part,
+// so the title already exists when this inline script runs mid-parse. Is this
+// dumb? Yes. Overriding the template parts is the obvious solution. Do I care,
+// though? Nope.
+add_action('get_template_part', function ($slug) {
+    if ($slug !== 'template-parts/header/site-nav') return;
+
+    echo "<script>document.querySelectorAll('.site-title a').forEach(a => a.replaceWith(...a.childNodes));</script>";
+});
+
 // I'm too lazy to the use "more" tag even though I should. This filter cuts the
 // excerpts down to their first paragraph -- however long or short it may be.
 add_filter('get_the_excerpt', function ($excerpt, $post) {

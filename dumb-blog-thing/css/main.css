@@ -478,10 +478,6 @@ p.note {
         text-decoration: none;
         text-transform: uppercase;
 
-        @media (min-width: 768px) {
-            font-size: 1.6875rem !important;
-        }
-
         &::after {
             background-color: var(--fgMain);
             bottom: 0;
