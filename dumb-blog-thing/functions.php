@@ -22,6 +22,31 @@ function add_actions($names, $callback, $priority = 10, $args = 1) {
     }
 }
 
+// Given a font value like `gfont:Merriweather, serif`, prints the Google Fonts
+// stylesheet for that family in regular, bold, and italic, then returns the
+// value as usable CSS: `'Merriweather', serif`. Others are returned untouched.
+function google_font_family($value) {
+    static $loaded = [];
+
+    if (strpos($value, 'gfont:') !== 0) return $value;
+
+    $parts  = array_map('trim', explode(',', substr($value, 6), 2));
+    $family = $parts[0];
+
+    if (! $loaded) {
+        echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
+        echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
+    }
+
+    if (! in_array($family, $loaded)) {
+        $query = str_replace(' ', '+', $family) . ':ital,wght@0,400;0,700;1,400;1,700';
+        printf('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=%s&display=swap">', esc_attr($query));
+        $loaded[] = $family;
+    }
+
+    return isset($parts[1]) ? "'{$family}', {$parts[1]}" : "'{$family}'";
+}
+
 // Copy-pasted from the parent to preemptively override this function so I can
 // update it to include the post's modified date. Such is how it goes when
 // there's no hooks to use!
@@ -110,15 +135,15 @@ add_action('wp_enqueue_scripts', function () {
     }
 
     if ($fontHead = get_field('font_heading', 'option')) {
-        printf('<style>body { --fontHead: %s }</style>', $fontHead);
+        printf('<style>body { --fontHead: %s }</style>', google_font_family($fontHead));
     }
 
     if ($fontBody = get_field('font_body', 'option')) {
-        printf('<style>body { --fontBody: %s }</style>', $fontBody);
+        printf('<style>body { --fontBody: %s }</style>', google_font_family($fontBody));
     }
 
     if ($fontCode = get_field('font_code', 'option')) {
-        printf('<style>body { --fontCode: %s }</style>', $fontCode);
+        printf('<style>body { --fontCode: %s }</style>', google_font_family($fontCode));
     }
 
     if ($fontSize = get_field('font_size', 'option')) {
