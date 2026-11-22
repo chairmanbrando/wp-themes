@@ -468,10 +468,19 @@ p.note {
     .site-title {
         background-color: var(--fgMain);
         color: var(--bgMain);
+        font-family: var(--fontHead) !important;
+        font-size: 1.5rem !important;
+        font-weight: bold !important;
+        line-height: 1.21;
         padding: 0.125em 0.5em;
         position: relative;
-        text-transform: uppercase;
         text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+
+        @media (min-width: 768px) {
+            font-size: 1.6875rem !important;
+        }
 
         &::after {
             background-color: var(--fgMain);
@@ -484,14 +493,6 @@ p.note {
             top: 0;
             width: 100%;
             /* width: var(--afterWidth); Set by JS on parent. */
-        }
-
-        a {
-            color: var(--bgMain) !important;
-            display: block;
-            font-family: var(--fontHead) !important;
-            font-weight: bold !important;
-            text-decoration: none;
         }
     }
 

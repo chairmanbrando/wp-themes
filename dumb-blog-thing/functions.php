@@ -94,6 +94,13 @@ add_action('admin_bar_menu', function ($bar) {
         'title'  => 'Posts',
         'href'   => admin_url('edit.php')
     ]);
+
+    $bar->add_node([
+        'id'     => 'theme-settings',
+        'parent' => 'site-name',
+        'title'  => 'Theme Settings',
+        'href'   => admin_url('themes.php?page=theme-shit')
+    ]);
 }, 99);
 
 // Add the current date to the admin bar. It just looks nice.
